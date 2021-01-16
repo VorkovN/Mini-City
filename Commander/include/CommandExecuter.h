@@ -5,10 +5,12 @@
 
 class CommandExecuter
 {
-public:
-	std::map<std::string, Command> commands_map;
+private:
+	std::map<std::string, Command*> commands_map;
 
 public:
 	CommandExecuter();
+
+	std::map<std::string, Command*> getCommands() const;
 };
 
