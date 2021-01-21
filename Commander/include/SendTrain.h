@@ -5,5 +5,5 @@
 class SendTrain : public Command
 {
 public:
-	bool execute() override;
+	bool execute() const override;
 };

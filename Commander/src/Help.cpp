@@ -1,9 +1,9 @@
 #include "Help.h"
 
-bool Help::execute()
+bool Help::execute()  const
 {
 	std::cout << "help - show all commands" << std::endl;
-	std::cout << "build_station - to build new station" << std::endl;
+	std::cout << "build_city - to build new city" << std::endl;
 	std::cout << "build_factory - to build factory on factory" << std::endl;
 	std::cout << "buy_train - to buy new train" << std::endl;
 	std::cout << "send_train - to send train to same city" << std::endl;

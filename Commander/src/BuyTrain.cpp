@@ -1,7 +1,7 @@
 #include "BuyTrain.h"
 
-bool BuyTrain::execute()
+bool BuyTrain::execute() const
 {
-	std::cout << "buy_auto" << std::endl;
+	std::cout << "buy_train" << std::endl;
 	return true;
 }

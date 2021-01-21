@@ -6,11 +6,11 @@
 class CommandExecuter
 {
 private:
-	std::map<std::string, Command*> commands_map;
+	const std::map<const std::string, const Command*> _commands_map;
 
 public:
 	CommandExecuter();
 
-	std::map<std::string, Command*> getCommands() const;
+	[[nodiscard]] const std::map<const std::string, const Command*>& getCommands() const;
 };
 

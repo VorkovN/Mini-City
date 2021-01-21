@@ -2,8 +2,8 @@
 #include "Command.h"
 #include <iostream>
 
-class BuildStation : public Command
+class BuildCity : public Command
 {
 public:
-	bool execute() override;
+	bool execute() const override;
 };

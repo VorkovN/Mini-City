@@ -5,5 +5,5 @@
 class ShowFactories : public Command
 {
 public:
-	bool execute() override;
+	bool execute() const override;
 };

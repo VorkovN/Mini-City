@@ -1,7 +1,7 @@
 #include "SendTrain.h"
 
-bool SendTrain::execute()
+bool SendTrain::execute()  const
 {
-	std::cout << "deliver" << std::endl;
+	std::cout << "send trains" << std::endl;
 	return true;
 }

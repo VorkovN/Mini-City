@@ -1,16 +1,25 @@
 #include <iostream>
+#include "World.h"
 #include "CommandExecuter.h"
 
 int main()
 {
+	//World world = new World();
 	std::cout << "Input you command (command help can help you)" << std::endl;
 	CommandExecuter commandExecuter;
-	while (true)
-	{
-		std::string command, arg;
-		std::cin >> command;
-		if(!commandExecuter.getCommands()[command]->execute())
-			std::cout << "execute error";
+	while (true) {
+		std::string command_str, arg;
+		std::cin >> command_str;
+		const std::_Rb_tree_const_iterator<std::pair<const std::basic_string<char,
+		std::char_traits<char>,std::allocator<char>>, const Command *>>
+		command = commandExecuter.getCommands().find(command_str);
+		commandExecuter.getCommands();
+		commandExecuter.getCommands();
+		commandExecuter.getCommands();
+		//if(command != commandExecuter.getCommands().end())
+		command->second->execute();
+		//else
+		std::cout << "execute error";
 	}
 	return 0;
 }
@@ -29,5 +38,5 @@ int main()
 этот бюджет можно тратить на покупку товарных поездов,
 поезда можно покупать разных типов,
 разные типы поездов перевозят разные типы ресурсов,
-необходимо следить за наличием товара на складе
+необходимо следить за наличием товара  на складе
 **/
