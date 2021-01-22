@@ -1,6 +1,6 @@
 #include "ResourceCreator.h"
 
-bool ResourceCreater::create_resource(Resources resource, size_t count)
+bool ResourceFactory::create_resource(Resources resource, size_t count)
 {
 
 };

@@ -9,10 +9,10 @@ World::World()
 	std::cout << "World created" << std::endl;
 }
 
-void World::buildCity(const std::string &city_name)
+void World::buildCity(const std::string &city_name, const std::string & resources_factory_type)
 {
-	_cities.insert({city_name, new City(city_name)});
-	std::cout << "build_city " << city_name << std::endl;
+	_cities.insert({city_name, new City(city_name, resources_factory_type)});
+	std::cout << "build_city " << city_name << " " << resources_factory_type << std::endl;
 }
 
 World *World::GetWorld()

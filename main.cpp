@@ -1,27 +1,47 @@
 #include <iostream>
+#include <vector>
 #include "World.h"
 #include "CommandExecuter.h"
 
 int main()
 {
-	World *world =  World::GetWorld();
+	World* world = World::GetWorld();
 	std::cout << "Input you command (command help can help you)" << std::endl;
 	CommandExecuter commandExecuter;
-	while (true) {
-		std::string command_str, command_word, arg;
+	while (true)
+	{
+		size_t i = 0;
+		std::string command_word, arg;
+		std::vector<std::string> args_vector;
 		std::cin >> command_word;
-		getline(std::cin, command_str);
-		//std::cout << "'" << command_str;
-		const std::_Rb_tree_const_iterator<std::pair<const std::basic_string<char,
-		std::char_traits<char>,std::allocator<char>>, const Command *>>
-		command = commandExecuter.getCommands().find(command_word);
-		if(command != commandExecuter.getCommands().end())
-			if(command_str == "\0")
-				command->second->execute();
+
+		const auto command = commandExecuter.getCommands().find(command_word);
+
+		if (command != commandExecuter.getCommands().end())
+		{
+			while (std::cin.peek() != '\n')//надеюсь всегда будет выполняться 1 условие
+			{
+				std::cin >> arg;
+				args_vector.push_back(arg);
+			}
+
+			if (args_vector.empty())
+			{
+				if (!command->second->execute())
+					std::cout << "execute error";
+			}
+
 			else
-				command->second->execute(command_str);
+			{
+				if (!command->second->execute(args_vector))
+					std::cout << "execute error";
+			}
+
+		}
 		else
-			std::cout << "execute error";
+		{
+			std::cout << "command type error";
+		}
 	}
 	return 0;
 }

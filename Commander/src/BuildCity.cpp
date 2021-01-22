@@ -1,10 +1,9 @@
 #include "BuildCity.h"
 
-bool BuildCity::execute(std::string args_string) const
+bool BuildCity::execute(std::vector<std::string> args_vector) const
 {
-	std::istringstream args_stream(args_string);
-	std::string city_name;
-	args_stream >> city_name;
-	_world->buildCity(city_name);
+	if (args_vector.size() != 2)
+		return false;
+	_world->buildCity(args_vector[0], args_vector[1]);
 	return true;
 }

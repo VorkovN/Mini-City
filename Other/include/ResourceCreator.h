@@ -2,7 +2,7 @@
 #include <iostream>
 #include "Resources.h"
 
-class ResourceCreater
+class ResourceFactory
 {
 	bool create_resource(Resources resource, size_t count);
 };
