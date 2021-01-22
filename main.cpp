@@ -4,22 +4,24 @@
 
 int main()
 {
-	//World world = new World();
+	World *world =  World::GetWorld();
 	std::cout << "Input you command (command help can help you)" << std::endl;
 	CommandExecuter commandExecuter;
 	while (true) {
-		std::string command_str, arg;
-		std::cin >> command_str;
+		std::string command_str, command_word, arg;
+		std::cin >> command_word;
+		getline(std::cin, command_str);
+		//std::cout << "'" << command_str;
 		const std::_Rb_tree_const_iterator<std::pair<const std::basic_string<char,
 		std::char_traits<char>,std::allocator<char>>, const Command *>>
-		command = commandExecuter.getCommands().find(command_str);
-		commandExecuter.getCommands();
-		commandExecuter.getCommands();
-		commandExecuter.getCommands();
-		//if(command != commandExecuter.getCommands().end())
-		command->second->execute();
-		//else
-		std::cout << "execute error";
+		command = commandExecuter.getCommands().find(command_word);
+		if(command != commandExecuter.getCommands().end())
+			if(command_str == "\0")
+				command->second->execute();
+			else
+				command->second->execute(command_str);
+		else
+			std::cout << "execute error";
 	}
 	return 0;
 }

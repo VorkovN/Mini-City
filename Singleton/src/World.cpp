@@ -6,13 +6,13 @@ World *World::_world = nullptr;
 
 World::World()
 {
-	std::cout << "worold created" << std::endl;
+	std::cout << "World created" << std::endl;
 }
 
-void World::buildCity(std::string name){
-	_c.insert({"name", "c"});
-
-	_cities.insert({"name", new City(std::move(name))});
+void World::buildCity(const std::string &city_name)
+{
+	_cities.insert({city_name, new City(city_name)});
+	std::cout << "build_city " << city_name << std::endl;
 }
 
 World *World::GetWorld()

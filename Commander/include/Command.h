@@ -4,7 +4,8 @@
 class Command
 {
 public:
-	virtual bool execute() const = 0;
+	virtual bool execute() const;
+	virtual bool execute(std::string agrs) const;
 protected:
-	World *_world = nullptr;
+	World *_world = World::GetWorld();
 };

@@ -3,26 +3,26 @@ project(Mini_Country)
 
 set(CMAKE_CXX_STANDARD 20)
 set(COMMANDER Commander/src/CommandExecuter.cpp
-              Commander/src/Command.cpp
-              Commander/src/BuildFactory.cpp
+        Commander/src/Command.cpp
+        Commander/src/BuildFactory.cpp
         Commander/src/BuildCity.cpp
-              Commander/src/BuyTrain.cpp
-              Commander/src/SendTrain.cpp
-              Commander/src/Produice.cpp
-              Commander/src/ShowFactories.cpp
-              Commander/src/ShowProducts.cpp
-              Commander/src/ShowTrains.cpp
-              Commander/src/Help.cpp
-              Commander/src/Exit.cpp)
+        Commander/src/BuyTrain.cpp
+        Commander/src/SendTrain.cpp
+        Commander/src/Produice.cpp
+        Commander/src/ShowFactories.cpp
+        Commander/src/ShowProducts.cpp
+        Commander/src/ShowTrains.cpp
+        Commander/src/Help.cpp
+        Commander/src/Exit.cpp)
 
 set(FACTORY Factory/src/TrainFactory.cpp
         Other/src/City.cpp
-            Factory/src/LiquidTrain.cpp
-            Factory/src/LiquidTrainFactory.cpp
-            Factory/src/OreTrain.cpp
-            Factory/src/OreTrainFactory.cpp
-            Factory/src/WoodTrain.cpp
-            Factory/src/WoodTrainFactory.cpp
+        Factory/src/LiquidTrain.cpp
+        Factory/src/LiquidTrainFactory.cpp
+        Factory/src/OreTrain.cpp
+        Factory/src/OreTrainFactory.cpp
+        Factory/src/WoodTrain.cpp
+        Factory/src/WoodTrainFactory.cpp
         Other/src/ResourceCreator.cpp
         Other/src/Resources.cpp
         )
@@ -31,21 +31,21 @@ set(SINGLETON Singleton/src/World.cpp)
 
 set(OTHER Factory/src/TrainFactory.cpp
         Other/src/City.cpp
-          Factory/src/LiquidTrain.cpp
-          Factory/src/LiquidTrainFactory.cpp
-          Factory/src/OreTrain.cpp
-          Factory/src/OreTrainFactory.cpp
-          Factory/src/WoodTrain.cpp
-          Factory/src/WoodTrainFactory.cpp
+        Factory/src/LiquidTrain.cpp
+        Factory/src/LiquidTrainFactory.cpp
+        Factory/src/OreTrain.cpp
+        Factory/src/OreTrainFactory.cpp
+        Factory/src/WoodTrain.cpp
+        Factory/src/WoodTrainFactory.cpp
         Other/src/ResourceCreator.cpp
         Other/src/Resources.cpp)
 
 set(SRC main.cpp ${COMMANDER} ${FACTORY} ${SINGLETON} ${OTHER})
 
 include_directories(Other/include/
-                    ${CMAKE_CURRENT_LIST_DIR}/Commander/include/
-                    ${CMAKE_CURRENT_LIST_DIR}/Factory/include/
-                    ${CMAKE_CURRENT_LIST_DIR}/Singleton/include/
-                    ${CMAKE_CURRENT_LIST_DIR}/Other/include/)
+        ${CMAKE_CURRENT_LIST_DIR}/Commander/include/
+        ${CMAKE_CURRENT_LIST_DIR}/Factory/include/
+        ${CMAKE_CURRENT_LIST_DIR}/Singleton/include/
+        ${CMAKE_CURRENT_LIST_DIR}/Other/include/)
 
 add_executable(Mini_City ${SRC})

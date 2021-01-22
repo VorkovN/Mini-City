@@ -14,7 +14,7 @@ public:
 	World(World &other) = delete;//запрещает клониррование
 	void operator=(const World &) = delete;//удаляет присваивание
 
-	void buildCity(std::string name);
+	void buildCity(const std::string & name);
 
 protected:
 	static World* _world;

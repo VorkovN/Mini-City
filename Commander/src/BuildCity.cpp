@@ -1,8 +1,10 @@
 #include "BuildCity.h"
 
-bool BuildCity::execute() const
+bool BuildCity::execute(std::string args_string) const
 {
-	_world->buildCity("city");
-	std::cout << "build_city" << std::endl;
+	std::istringstream args_stream(args_string);
+	std::string city_name;
+	args_stream >> city_name;
+	_world->buildCity(city_name);
 	return true;
 }
