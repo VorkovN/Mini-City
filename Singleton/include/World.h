@@ -7,14 +7,14 @@ class World
 {
 private:
 	std::unordered_map<std::string, City*> _cities;
-	std::unordered_map<std::string, std::string> _c;
 
 public:
 	static World *GetWorld();
 	World(World &other) = delete;//запрещает клониррование
 	void operator=(const World &) = delete;//удаляет присваивание
 
-	void buildCity(const std::string & name, const std::string & factory_type);
+	bool buildCity(const std::string & city_name, const std::string & resources_factory_type);
+	bool buyTrain(const std::string & city_name, const std::string & resources_factory_type, size_t cars_count);
 
 protected:
 	static World* _world;

@@ -1,8 +1,12 @@
-//
-// Created by vorkov on 16.01.2021.
-//
+#pragma once
+#include "Resources.h"
 
-#ifndef TRAIN_H
-#define TRAIN_H
+class Train
+{
+ public:
+	Train(Resources::ResourcesTypes cars_type, size_t cars_count);
 
-#endif //TRAIN_H
+ public://todo закрытьпосле отладки
+	Resources::ResourcesTypes _cars_types;
+	size_t _cars_count;
+};

@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <unistd.h>
-#include "ResourcesTypes.h"
+#include "Resources.h"
 #include "City.h"
 
 class City;

@@ -10,7 +10,6 @@ int main()
 	CommandExecuter commandExecuter;
 	while (true)
 	{
-		size_t i = 0;
 		std::string command_word, arg;
 		std::vector<std::string> args_vector;
 		std::cin >> command_word;

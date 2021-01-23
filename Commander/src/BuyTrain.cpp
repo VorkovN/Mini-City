@@ -1,7 +1,10 @@
 #include "BuyTrain.h"
 
-bool BuyTrain::execute() const
+bool BuyTrain::execute(std::vector<std::string> args_vector) const
 {
-	std::cout << "buy_train" << std::endl;
+	if (args_vector.size() != 3)
+		return false;
+	if(!_world->buyTrain(args_vector[0], args_vector[1], stoi(args_vector[2])))
+		return false;
 	return true;
 }

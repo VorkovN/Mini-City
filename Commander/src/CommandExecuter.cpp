@@ -15,7 +15,7 @@ CommandExecuter::CommandExecuter(): _commands_map({
 					  {"help", new Help},
 					  {"build_city", new BuildCity},//название, тип фабрики
 					  {"build_factory", new BuildFactory},//город, тип фабрики
-					  {"buy_train", new BuyTrain},//город, кол-во вагонов
+					  {"buy_train", new BuyTrain},//город, тип, кол-во вагонов
 					  {"produce", new Produice},//город, тип продукта
 					  {"send_train", new SendTrain},//откуда, куда, номер поезда
 					  {"show_trains", new ShowTrains},//город

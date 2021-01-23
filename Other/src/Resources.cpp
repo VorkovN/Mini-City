@@ -1,4 +1,4 @@
-#include "ResourcesTypes.h"
+#include "Resources.h"
 
 std::map<std::string, Resources::ResourcesTypes> const Resources::_resources = {{"ore", Resources::ORE},{"wood", Resources::WOOD},{"liquid", Resources::LIQUID}};
 

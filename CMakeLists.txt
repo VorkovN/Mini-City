@@ -17,29 +17,20 @@ set(COMMANDER Commander/src/CommandExecuter.cpp
         Commander/src/Exit.cpp)
 
 set(FACTORY Factory/src/TrainFactory.cpp
-        Other/src/City.cpp
+        Factory/src/Train.cpp
         Factory/src/LiquidTrain.cpp
         Factory/src/LiquidTrainFactory.cpp
         Factory/src/OreTrain.cpp
         Factory/src/OreTrainFactory.cpp
         Factory/src/WoodTrain.cpp
-        Factory/src/WoodTrainFactory.cpp
-        Other/src/ResourceFactory.cpp
-        Other/src/ResourcesTypes.cpp
-        )
+        Factory/src/WoodTrainFactory.cpp)
 
 set(SINGLETON Singleton/src/World.cpp)
 
 set(OTHER Factory/src/TrainFactory.cpp
         Other/src/City.cpp
-        Factory/src/LiquidTrain.cpp
-        Factory/src/LiquidTrainFactory.cpp
-        Factory/src/OreTrain.cpp
-        Factory/src/OreTrainFactory.cpp
-        Factory/src/WoodTrain.cpp
-        Factory/src/WoodTrainFactory.cpp
         Other/src/ResourceFactory.cpp
-        Other/src/ResourcesTypes.cpp)
+        Other/src/Resources.cpp)
 
 set(SRC main.cpp ${COMMANDER} ${FACTORY} ${SINGLETON} ${OTHER})
 
