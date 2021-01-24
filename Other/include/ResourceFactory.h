@@ -10,11 +10,12 @@ class ResourceFactory
 {
  public:
 	ResourceFactory(CarsTypes::Types resource, City *city);
+	CarsTypes::Types getResource() const;
 
  private:
-	City *city = nullptr;
-	CarsTypes::Types resource = CarsTypes::ORE;
-	size_t productivity = 1; //how mach resources created for one cicle
+	City *_city = nullptr;
+	CarsTypes::Types _resource;
+	size_t _productivity = 1; //how mach resources created for one cicle
 
  private:
 	void resource_factory_working();

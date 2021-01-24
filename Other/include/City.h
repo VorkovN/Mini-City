@@ -20,6 +20,8 @@ class City
 	std::list<Train*>& getRailwayStation();
 	std::map<CarsTypes::Types, size_t>& getResources();
 	size_t& getPopulation();
+	const std::string* getName();
+	const ResourceFactory* getResourcefactory();
 
 	~City();
  private:
