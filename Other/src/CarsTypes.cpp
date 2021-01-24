@@ -11,5 +11,5 @@ std::map<std::string, CarsTypes::Types> const CarsTypes::_passenger_cars_types =
 
 CarsTypes::Types CarsTypes::getPasCarTypes(const std::string& str)
 {
-	return _passenger_cars_types.at(str);
+	return _passenger_cars_types.at(str);//может вылететь эксепшен
 }

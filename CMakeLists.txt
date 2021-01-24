@@ -11,7 +11,7 @@ set(COMMANDER Commander/src/CommandExecuter.cpp
         Commander/src/BuyFreightTrain.cpp
         Commander/src/BuyPassengerTrain.cpp
         Commander/src/SendTrain.cpp
-        Commander/src/Produice.cpp
+        Commander/src/ShowPopulation.cpp
         Commander/src/ShowFactories.cpp
         Commander/src/ShowProducts.cpp
         Commander/src/ShowTrains.cpp
@@ -29,7 +29,8 @@ set(SINGLETON Singleton/src/World.cpp)
 
 set(OTHER Other/src/City.cpp
         Other/src/ResourceFactory.cpp
-        Other/src/CarsTypes.cpp)
+        Other/src/CarsTypes.cpp
+        Other/src/MaternityHospital.cpp)
 
 set(SRC main.cpp ${COMMANDER} ${FACTORY} ${SINGLETON} ${OTHER})
 

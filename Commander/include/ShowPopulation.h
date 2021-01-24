@@ -2,7 +2,7 @@
 #include "Command.h"
 #include <iostream>
 
-class Produice : public Command
+class ShowPopulation : public Command
 {
 public:
 	bool execute() const override;

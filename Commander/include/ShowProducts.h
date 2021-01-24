@@ -5,5 +5,5 @@
 class ShowProducts : public Command
 {
 public:
-	bool execute() const override;
+	bool execute(std::vector<std::string> args_vector) const override;
 };

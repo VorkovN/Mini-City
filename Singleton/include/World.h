@@ -28,6 +28,10 @@ class World
 	bool buyFreightTrain(const std::string& city_name, CarsTypes::Types cars_type, size_t cars_count);
 	bool buyPassengerTrain(const std::string& city_name, CarsTypes::Types cars_type, size_t cars_count);
 	bool sendTrain(const std::string& city_from, const std::string& city_to, CarsTypes::Types cars_type, size_t cars_count);
+	bool showProducts(const std::string& city);
+	bool showTrains(const std::string& city);
+	bool showFactories();
+	bool showPopulation();
 
  protected:
 	static World* _world;

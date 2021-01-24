@@ -1,7 +1,9 @@
 #include "ShowTrains.h"
 
-bool ShowTrains::execute()  const
+bool ShowTrains::execute(std::vector<std::string> args_vector)  const
 {
-	std::cout << "show trains" << std::endl;
+	if(!_world->showTrains(args_vector[0]))
+		return false;
 	return true;
+
 }

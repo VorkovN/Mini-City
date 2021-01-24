@@ -5,10 +5,12 @@
 #include <thread>
 #include "CarsTypes.h"
 #include "ResourceFactory.h"
+#include "MaternityHospital.h"
 #include "Train.h"
 
 class Train;
 class ResourceFactory;
+class MatrinityHospital;
 
 class City
 {
@@ -26,8 +28,9 @@ class City
 	~City();
  private:
 	const std::string* const _name;
-	const ResourceFactory* _resourcefactory{};
-	std::map<CarsTypes::Types, size_t> _resources{};
+	const ResourceFactory* _resource_factory;
+	const MatrinityHospital* _mat_hosp;
+	std::map<CarsTypes::Types, size_t> _resources;
 	std::map<CarsTypes::Types, std::list<Train*>> _railway_station;
 	size_t _population = 10;
 	const size_t _budget = 10;

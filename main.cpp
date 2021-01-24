@@ -18,7 +18,7 @@ int main()
 
 		if (command != commandExecuter.getCommands().end())
 		{
-			while (std::cin.peek() != '\n')//надеюсь всегда будет выполняться 1 условие
+			while (std::cin.peek() != '\n')
 			{
 				std::cin >> arg;
 				args_vector.push_back(arg);
@@ -27,19 +27,19 @@ int main()
 			if (args_vector.empty())
 			{
 				if (!command->second->execute())
-					std::cout << "execute error";
+					std::cout << "execute error" << std::endl;
 			}
 
 			else
 			{
 				if (!command->second->execute(args_vector))
-					std::cout << "execute error";
+					std::cout << "execute error" << std::endl;
 			}
 
 		}
 		else
 		{
-			std::cout << "command type error";
+			std::cout << "command type error" << std::endl;
 		}
 	}
 	return 0;

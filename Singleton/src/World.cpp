@@ -16,8 +16,6 @@ bool World::buildCity(const std::string& city_name, CarsTypes::Types resources_f
 	else
 		return false;
 
-	std::cout << "build_city " << *(_cities[city_name]->getName()) << " "
-			  << _cities[city_name]->getResourcefactory()->getResource() << std::endl;
 	return true;
 }
 
@@ -30,9 +28,7 @@ bool World::buyFreightTrain(const std::string& city_name, CarsTypes::Types cars_
 	City* city = _cities.at(city_name);
 	city->getRailwayStation()[cars_type].push_back(train);
 
-	std::cout << "buy_freight_train " << city_name << " "
-			  << _cities.at(city_name)->getRailwayStation()[cars_type].back()->getCarsType() <<
-			  " " << _cities.at(city_name)->getRailwayStation()[cars_type].back()->getCarsCount() << std::endl;
+
 	return true;
 }
 
@@ -45,15 +41,11 @@ bool World::buyPassengerTrain(const std::string& city_name, CarsTypes::Types car
 	City* city = _cities.at(city_name);
 	city->getRailwayStation()[cars_type].push_back(train);
 
-	std::cout << "buy_freight_train " << city_name << " "
-			  << _cities.at(city_name)->getRailwayStation()[cars_type].back()->getCarsType() <<
-			  " " << _cities.at(city_name)->getRailwayStation()[cars_type].back()->getCarsCount() << std::endl;
 	return true;
 }
 
 
-bool
-World::sendTrain(const std::string& name_city_from, const std::string& name_city_to, CarsTypes::Types cars_type, size_t cars_count)
+bool World::sendTrain(const std::string& name_city_from, const std::string& name_city_to, CarsTypes::Types cars_type, size_t cars_count)
 {
 	if (_cities.find(name_city_from) == _cities.end() || _cities.find(name_city_to) == _cities.end())
 		return false;
@@ -70,6 +62,7 @@ World::sendTrain(const std::string& name_city_from, const std::string& name_city
 			train = cur_train;
 
 	train->move(city_from, city_to);
+	return true;
 }
 
 World* World::GetWorld()
@@ -82,5 +75,51 @@ World* World::GetWorld()
 std::unordered_map<std::string, City*>& World::getCities()
 {
 	return _cities;
+}
+
+bool World::showProducts(const std::string& city_name)
+{
+	if (_cities.find(city_name) == _cities.end())
+		return false;
+
+	City* city = _cities.at(city_name);
+
+	std::cout << std::endl;
+	std::cout << "ore: " <<city->getResources()[CarsTypes::ORE] << std::endl;
+	std::cout << "wood: " <<city->getResources()[CarsTypes::WOOD] << std::endl;
+	std::cout << "liquid: " <<city->getResources()[CarsTypes::LIQUID] << std::endl;
+	return true;
+}
+
+bool World::showTrains(const std::string& city_name)
+{
+	if (_cities.find(city_name) == _cities.end())
+		return false;
+
+	City* city = _cities.at(city_name);
+
+	std::cout << std::endl;
+	std::cout << "bilevel: " <<city->getRailwayStation()[CarsTypes::BILEVEL].size() << std::endl;
+	std::cout << "simple: " <<city->getRailwayStation()[CarsTypes::SIMPLE].size() << std::endl;
+	std::cout << "ore: " <<city->getRailwayStation()[CarsTypes::ORE].size() << std::endl;
+	std::cout << "wood: " <<city->getRailwayStation()[CarsTypes::WOOD].size() << std::endl;
+	std::cout << "liquid: " <<city->getRailwayStation()[CarsTypes::LIQUID].size() << std::endl;
+	return true;
+}
+
+bool World::showFactories()
+{
+	for(std::pair<std::string, City*> city: _world->getCities())
+		std::cout << *city.second->getName() << ": " << city.second->getResourcefactory()->getResource() << std::endl;
+	std::cout << std::endl;
+	return true;
+}
+
+bool World::showPopulation()
+{
+	for(std::pair<std::string, City*> city: _world->getCities())
+		std::cout << *city.second->getName() << ": " << city.second->getPopulation() << std::endl;
+	std::cout << std::endl;
+	return true;
 }
 

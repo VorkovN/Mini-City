@@ -1,15 +1,15 @@
 #include "City.h"
 
-City::City(std::string name, CarsTypes::Types resources_factory_type):
-		_name{new std::string(std::move(name))}, _resourcefactory(new ResourceFactory(resources_factory_type, this)),
-		_resources({{CarsTypes::ORE, 5}, {CarsTypes::WOOD, 5},{CarsTypes::LIQUID, 5}})
+City::City(std::string name, CarsTypes::Types resources_factory_type): _name{new std::string(std::move(name))},
+	_resource_factory(new ResourceFactory(resources_factory_type, this)), _mat_hosp(new MatrinityHospital(this)),
+	_resources({{CarsTypes::ORE, 5}, {CarsTypes::WOOD, 5},{CarsTypes::LIQUID, 5}})
 {
-	std::cout << "new _city" << std::endl;
+	std::cout << "new city" << std::endl;
 }
 
 City::~City()
 {
-	delete _resourcefactory;
+	delete _resource_factory;
 	delete _name;
 }
 
@@ -35,5 +35,5 @@ const std::string* City::getName()
 
 const ResourceFactory* City::getResourcefactory()
 {
-	return _resourcefactory;
+	return _resource_factory;
 }

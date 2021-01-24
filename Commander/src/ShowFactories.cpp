@@ -2,6 +2,7 @@
 
 bool ShowFactories::execute()  const
 {
-	std::cout << "show factories" << std::endl;
+	if(!_world->showFactories())
+		return false;
 	return true;
 }
