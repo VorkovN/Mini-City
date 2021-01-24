@@ -13,7 +13,7 @@ City::~City()
 	delete _name;
 }
 
-std::list<Train*>& City::getRailwayStation()
+std::map<CarsTypes::Types, std::list<Train*>>& City::getRailwayStation()
 {
 	return _railway_station;
 }

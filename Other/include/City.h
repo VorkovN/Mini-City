@@ -17,7 +17,7 @@ class City
  public:
 	explicit City(std::string name, CarsTypes::Types resources_factory_type);
 
-	std::list<Train*>& getRailwayStation();
+	std::map<CarsTypes::Types, std::list<Train*>>& getRailwayStation();
 	std::map<CarsTypes::Types, size_t>& getResources();
 	size_t& getPopulation();
 	const std::string* getName();
@@ -28,7 +28,7 @@ class City
 	const std::string* const _name;
 	const ResourceFactory* _resourcefactory{};
 	std::map<CarsTypes::Types, size_t> _resources{};
-	std::list<Train*> _railway_station;
+	std::map<CarsTypes::Types, std::list<Train*>> _railway_station;
 	size_t _population = 10;
 	const size_t _budget = 10;
 };
