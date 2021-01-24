@@ -15,7 +15,7 @@ class City
  public:
 
  public:
-	explicit City(std::string name, const std::string& resources_factory_type);
+	explicit City(std::string name, CarsTypes::Types resources_factory_type);
 
 	std::list<Train*>& getRailwayStation();
 	std::map<CarsTypes::Types, size_t>& getResources();

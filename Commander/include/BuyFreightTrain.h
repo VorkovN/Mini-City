@@ -1,5 +1,6 @@
 #pragma once
 #include "Command.h"
+#include "CarsTypes.h"
 #include <iostream>
 
 class BuyFreightTrain : public Command

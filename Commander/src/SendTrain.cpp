@@ -1,7 +1,10 @@
 #include "SendTrain.h"
 
-bool SendTrain::execute()  const
+bool SendTrain::execute(std::vector<std::string> args_vector)  const
 {
-	std::cout << "send trains" << std::endl;
+	if (args_vector.size() != 2)
+		return false;
+	if(!_world->buildCity(args_vector[0], CarsTypes::getFrCarTypes(args_vector[1])))
+		return false;
 	return true;
 }

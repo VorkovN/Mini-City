@@ -7,9 +7,7 @@ std::map<std::string, CarsTypes::Types> const CarsTypes::_resources = {{"ore", C
 	return _resources.at(str);//может вылететь эксепшен
 }
 
-std::map<std::string, CarsTypes::Types> const CarsTypes::_passenger_cars_types
-		= {{"simple", CarsTypes::SIMPLE},{"bilevel", Types::BILEVEL}};
-
+std::map<std::string, CarsTypes::Types> const CarsTypes::_passenger_cars_types = {{"simple", CarsTypes::SIMPLE},{"bilevel", Types::BILEVEL}};
 
 CarsTypes::Types CarsTypes::getPasCarTypes(const std::string& str)
 {

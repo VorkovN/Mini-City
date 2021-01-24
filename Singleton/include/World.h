@@ -23,10 +23,10 @@ class World
 	World(World& other) = delete;//запрещает клониррование
 	void operator=(const World&) = delete;//удаляет присваивание
 
-	bool buildCity(const std::string& city_name, const std::string& resources_factory_type);
-
-	bool buyFreightTrain(const std::string& city_name, const std::string& resources_factory_type, size_t cars_count);
-	bool buyPassengerTrain(const std::string& city_name, const std::string& resources_factory_type, size_t cars_count);
+	bool buildCity(const std::string& city_name, CarsTypes::Types resources_factory_type);
+	bool buyFreightTrain(const std::string& city_name, CarsTypes::Types cars_type, size_t cars_count);
+	bool buyPassengerTrain(const std::string& city_name, CarsTypes::Types cars_type, size_t cars_count);
+	bool sendTrain(const std::string& city_from, const std::string& city_to, const std::string& cars_type, size_t cars_count);
 
  protected:
 	static World* _world;

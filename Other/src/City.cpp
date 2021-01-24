@@ -1,7 +1,7 @@
 #include "City.h"
 
-City::City(std::string name, const std::string& resources_factory_type):
-		_name{new std::string(std::move(name))}, _resourcefactory(new ResourceFactory(CarsTypes::getFrCarTypes(resources_factory_type), this)),
+City::City(std::string name, CarsTypes::Types resources_factory_type):
+		_name{new std::string(std::move(name))}, _resourcefactory(new ResourceFactory(resources_factory_type, this)),
 		_resources({{CarsTypes::ORE, 5}, {CarsTypes::WOOD, 5},{CarsTypes::LIQUID, 5}})
 {
 	std::cout << "new city" << std::endl;
