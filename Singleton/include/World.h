@@ -1,25 +1,37 @@
 #pragma once
+
 #include <iostream>
 #include <unordered_map>
 #include "City.h"
+#include "TrainFactory.h"
+#include "PassengerTrainFactory.h"
+#include "FreightTrainFactory.h"
 
 class World
 {
-private:
+ public:
+
+	TrainFactory* _freighTtrainFactory = new FreightTrainFactory;
+	TrainFactory* _passengerTtrainFactory = new PassengerTrainFactory;
+
+ private:
 	std::unordered_map<std::string, City*> _cities;
 
-public:
-	static World *GetWorld();
-	World(World &other) = delete;//запрещает клониррование
-	void operator=(const World &) = delete;//удаляет присваивание
+ public:
+	static World* GetWorld();
 
-	bool buildCity(const std::string & city_name, const std::string & resources_factory_type);
-	bool buyTrain(const std::string & city_name, const std::string & resources_factory_type, size_t cars_count);
+	World(World& other) = delete;//запрещает клониррование
+	void operator=(const World&) = delete;//удаляет присваивание
 
-protected:
+	bool buildCity(const std::string& city_name, const std::string& resources_factory_type);
+
+	bool buyFreightTrain(const std::string& city_name, const std::string& resources_factory_type, size_t cars_count);
+	bool buyPassengerTrain(const std::string& city_name, const std::string& resources_factory_type, size_t cars_count);
+
+ protected:
 	static World* _world;
 
-protected:
+ protected:
 	World();
 
 };

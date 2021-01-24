@@ -2,7 +2,7 @@
 #include "Command.h"
 #include <iostream>
 
-class BuyTrain : public Command
+class BuyFreightTrain : public Command
 {
 public:
 	bool execute(std::vector<std::string> args_vector) const override;

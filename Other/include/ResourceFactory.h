@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <unistd.h>
-#include "Resources.h"
+#include "CarsTypes.h"
 #include "City.h"
 
 class City;
@@ -9,11 +9,11 @@ class City;
 class ResourceFactory
 {
  public:
-	ResourceFactory(Resources::ResourcesTypes resource, City *city);
+	ResourceFactory(CarsTypes::Types resource, City *city);
 
  private:
 	City *city = nullptr;
-	Resources::ResourcesTypes resource = Resources::ORE;
+	CarsTypes::Types resource = CarsTypes::ORE;
 	size_t productivity = 1; //how mach resources created for one cicle
 
  private:

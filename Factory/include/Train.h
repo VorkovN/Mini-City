@@ -1,12 +1,18 @@
 #pragma once
-#include "Resources.h"
+#include "CarsTypes.h"
+#include "City.h"
+
+class City;
 
 class Train
 {
  public:
-	Train(Resources::ResourcesTypes cars_type, size_t cars_count);
+	explicit Train(size_t cars_count, CarsTypes::Types cars_type);
 
- public://todo закрытьпосле отладки
-	Resources::ResourcesTypes _cars_types;
+	virtual void move(City city1, City city2) = 0;
+	size_t& getCarsCount();
+	CarsTypes::Types getCarsType();
+ private:
+	CarsTypes::Types _cars_type;
 	size_t _cars_count;
 };

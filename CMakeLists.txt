@@ -2,12 +2,14 @@ cmake_minimum_required(VERSION 3.17)
 project(Mini_Country)
 
 set(CMAKE_CXX_STANDARD 20)
-SET(CMAKE_CXX_FLAGS -pthread)
+set(CMAKE_CXX_FLAGS -pthread)
+
 set(COMMANDER Commander/src/CommandExecuter.cpp
         Commander/src/Command.cpp
         Commander/src/BuildFactory.cpp
         Commander/src/BuildCity.cpp
-        Commander/src/BuyTrain.cpp
+        Commander/src/BuyFreightTrain.cpp
+        Commander/src/BuyPassengerTrain.cpp
         Commander/src/SendTrain.cpp
         Commander/src/Produice.cpp
         Commander/src/ShowFactories.cpp
@@ -18,19 +20,16 @@ set(COMMANDER Commander/src/CommandExecuter.cpp
 
 set(FACTORY Factory/src/TrainFactory.cpp
         Factory/src/Train.cpp
-        Factory/src/LiquidTrain.cpp
-        Factory/src/LiquidTrainFactory.cpp
-        Factory/src/OreTrain.cpp
-        Factory/src/OreTrainFactory.cpp
-        Factory/src/WoodTrain.cpp
-        Factory/src/WoodTrainFactory.cpp)
+        Factory/src/FreightTrain.cpp
+        Factory/src/FreightTrainFactory.cpp
+        Factory/src/PassengerTrain.cpp
+        Factory/src/PassengerTrainFactory.cpp)
 
 set(SINGLETON Singleton/src/World.cpp)
 
-set(OTHER Factory/src/TrainFactory.cpp
-        Other/src/City.cpp
+set(OTHER Other/src/City.cpp
         Other/src/ResourceFactory.cpp
-        Other/src/Resources.cpp)
+        Other/src/CarsTypes.cpp)
 
 set(SRC main.cpp ${COMMANDER} ${FACTORY} ${SINGLETON} ${OTHER})
 

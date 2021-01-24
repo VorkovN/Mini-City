@@ -3,28 +3,30 @@
 #include <list>
 #include <iostream>
 #include <thread>
-#include "Resources.h"
+#include "CarsTypes.h"
 #include "ResourceFactory.h"
 #include "Train.h"
 
+class Train;
 class ResourceFactory;
 
 class City
 {
  public:
-	friend class ResourceFactory;
 
  public:
 	explicit City(std::string name, const std::string& resources_factory_type);
 
 	std::list<Train*>& getRailwayStation();
+	std::map<CarsTypes::Types, size_t>& getResources();
+	size_t& getPopulation();
 
 	~City();
-	std::list<size_t> test;
  private:
 	const std::string* const _name;
 	const ResourceFactory* _resourcefactory{};
-	std::map<Resources::ResourcesTypes, size_t> _resources{};
+	std::map<CarsTypes::Types, size_t> _resources{};
 	std::list<Train*> _railway_station;
-	const size_t _budget = 0;
+	size_t _population = 10;
+	const size_t _budget = 10;
 };
