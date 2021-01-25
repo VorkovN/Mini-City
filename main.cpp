@@ -3,8 +3,12 @@
 #include "World.h"
 #include "CommandExecuter.h"
 
+
+size_t PRODEUCE_RESOURCE = 1000;
+
 int main()
 {
+	srand(time(nullptr));
 	World* world = World::GetWorld();
 	std::cout << "Input you command (command help can help you)" << std::endl;
 	CommandExecuter commandExecuter;

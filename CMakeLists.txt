@@ -30,7 +30,8 @@ set(SINGLETON Singleton/src/World.cpp)
 set(OTHER Other/src/City.cpp
         Other/src/ResourceFactory.cpp
         Other/src/CarsTypes.cpp
-        Other/src/MaternityHospital.cpp)
+        Other/src/MaternityHospital.cpp
+        Other/src/Warehouse.cpp)
 
 set(SRC main.cpp ${COMMANDER} ${FACTORY} ${SINGLETON} ${OTHER})
 

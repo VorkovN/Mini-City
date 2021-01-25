@@ -13,5 +13,6 @@ class MatrinityHospital
 	void createChildren();
 
  private:
+	size_t CREATE_CHILDREN = 1000;
 	City* _city = nullptr;
 };

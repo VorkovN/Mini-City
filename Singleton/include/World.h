@@ -10,7 +10,6 @@
 class World
 {
  public:
-
 	TrainFactory* _freighTtrainFactory = new FreightTrainFactory;
 	TrainFactory* _passengerTtrainFactory = new PassengerTrainFactory;
 

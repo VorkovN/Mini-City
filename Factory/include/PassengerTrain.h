@@ -2,6 +2,7 @@
 #include "CarsTypes.h"
 #include "City.h"
 
+
 class PassengerTrain : public Train
 {
  public:

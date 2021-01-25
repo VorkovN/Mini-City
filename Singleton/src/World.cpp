@@ -108,6 +108,7 @@ bool World::showTrains(const std::string& city_name)
 
 bool World::showFactories()
 {
+	std::cout << std::endl;
 	for(std::pair<std::string, City*> city: _world->getCities())
 		std::cout << *city.second->getName() << ": " << city.second->getResourcefactory()->getResource() << std::endl;
 	std::cout << std::endl;
@@ -116,6 +117,7 @@ bool World::showFactories()
 
 bool World::showPopulation()
 {
+	std::cout << std::endl;
 	for(std::pair<std::string, City*> city: _world->getCities())
 		std::cout << *city.second->getName() << ": " << city.second->getPopulation() << std::endl;
 	std::cout << std::endl;

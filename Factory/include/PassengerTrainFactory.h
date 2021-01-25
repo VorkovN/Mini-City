@@ -1,5 +1,4 @@
 #pragma once
-
 #include "TrainFactory.h"
 #include "PassengerTrain.h"
 

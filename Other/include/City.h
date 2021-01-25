@@ -6,15 +6,20 @@
 #include "CarsTypes.h"
 #include "ResourceFactory.h"
 #include "MaternityHospital.h"
+#include "Warehouse.h"
 #include "Train.h"
 
 class Train;
 class ResourceFactory;
 class MatrinityHospital;
+class Warehouse;
 
 class City
 {
  public:
+	friend class ResourceFactory;
+	friend class MatrinityHospital;
+	friend class Warehouse;
 
  public:
 	explicit City(std::string name, CarsTypes::Types resources_factory_type);
@@ -30,8 +35,10 @@ class City
 	const std::string* const _name;
 	const ResourceFactory* _resource_factory;
 	const MatrinityHospital* _mat_hosp;
+	const Warehouse* _warehouse;
 	std::map<CarsTypes::Types, size_t> _resources;
 	std::map<CarsTypes::Types, std::list<Train*>> _railway_station;
 	size_t _population = 10;
 	const size_t _budget = 10;
+	std::mutex _mu;
 };

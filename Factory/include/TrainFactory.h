@@ -1,6 +1,7 @@
 #pragma once
 #include "Train.h"
 
+class City;
 
 class TrainFactory{
  public:
