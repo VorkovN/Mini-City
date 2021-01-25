@@ -19,30 +19,21 @@ bool World::buildCity(const std::string& city_name, CarsTypes::Types resources_f
 	return true;
 }
 
-bool World::buyFreightTrain(const std::string& city_name, CarsTypes::Types cars_type, size_t cars_count)
+bool World::buyTrain(const std::string& city_name, CarsTypes::Types cars_type, size_t cars_count)
 {
 	if (_cities.find(city_name) == _cities.end())
 		return false;
 
-	Train* train = _world->_freighTtrainFactory->createTrain(cars_type, cars_count);
+	Train* train;
+	if (cars_type < 0)
+		train = _world->_passengerTtrainFactory->createTrain(cars_type, cars_count);
+	else
+		train = _world->_freighTtrainFactory->createTrain(cars_type, cars_count);
 	City* city = _cities.at(city_name);
 	city->getRailwayStation()[cars_type].push_back(train);
 
 	return true;
 }
-
-bool World::buyPassengerTrain(const std::string& city_name, CarsTypes::Types cars_type, size_t cars_count)
-{
-	if (_cities.find(city_name) == _cities.end())
-		return false;
-
-	Train* train = _world->_passengerTtrainFactory->createTrain(cars_type, cars_count);
-	City* city = _cities.at(city_name);
-	city->getRailwayStation()[cars_type].push_back(train);
-
-	return true;
-}
-
 
 bool World::sendTrain(const std::string& name_city_from, const std::string& name_city_to, CarsTypes::Types cars_type, size_t cars_count)
 {
@@ -51,7 +42,7 @@ bool World::sendTrain(const std::string& name_city_from, const std::string& name
 	City* city_from = _cities.at(name_city_from);
 	City* city_to = _cities.at(name_city_to);
 
-	if(city_from->getRailwayStation()[cars_type].empty())
+	if (city_from->getRailwayStation()[cars_type].empty())
 		return false;
 
 	Train* train = city_from->getRailwayStation()[cars_type].front();
@@ -84,9 +75,9 @@ bool World::showProducts(const std::string& city_name)
 	City* city = _cities.at(city_name);
 
 	std::cout << std::endl;
-	std::cout << "ore: " <<city->getResources()[CarsTypes::ORE] << std::endl;
-	std::cout << "wood: " <<city->getResources()[CarsTypes::WOOD] << std::endl;
-	std::cout << "liquid: " <<city->getResources()[CarsTypes::LIQUID] << std::endl;
+	std::cout << "ore: " << city->getResources()[CarsTypes::ORE] << std::endl;
+	std::cout << "wood: " << city->getResources()[CarsTypes::WOOD] << std::endl;
+	std::cout << "liquid: " << city->getResources()[CarsTypes::LIQUID] << std::endl;
 	return true;
 }
 
@@ -98,18 +89,18 @@ bool World::showTrains(const std::string& city_name)
 	City* city = _cities.at(city_name);
 
 	std::cout << std::endl;
-	std::cout << "bilevel: " <<city->getRailwayStation()[CarsTypes::BILEVEL].size() << std::endl;
-	std::cout << "simple: " <<city->getRailwayStation()[CarsTypes::SIMPLE].size() << std::endl;
-	std::cout << "ore: " <<city->getRailwayStation()[CarsTypes::ORE].size() << std::endl;
-	std::cout << "wood: " <<city->getRailwayStation()[CarsTypes::WOOD].size() << std::endl;
-	std::cout << "liquid: " <<city->getRailwayStation()[CarsTypes::LIQUID].size() << std::endl;
+	std::cout << "bilevel: " << city->getRailwayStation()[CarsTypes::BILEVEL].size() << std::endl;
+	std::cout << "simple: " << city->getRailwayStation()[CarsTypes::SIMPLE].size() << std::endl;
+	std::cout << "ore: " << city->getRailwayStation()[CarsTypes::ORE].size() << std::endl;
+	std::cout << "wood: " << city->getRailwayStation()[CarsTypes::WOOD].size() << std::endl;
+	std::cout << "liquid: " << city->getRailwayStation()[CarsTypes::LIQUID].size() << std::endl;
 	return true;
 }
 
 bool World::showFactories()
 {
 	std::cout << std::endl;
-	for(std::pair<std::string, City*> city: _world->getCities())
+	for (std::pair<std::string, City*> city: _world->getCities())
 		std::cout << *city.second->getName() << ": " << city.second->getResourcefactory()->getResource() << std::endl;
 	std::cout << std::endl;
 	return true;
@@ -118,7 +109,7 @@ bool World::showFactories()
 bool World::showPopulation()
 {
 	std::cout << std::endl;
-	for(std::pair<std::string, City*> city: _world->getCities())
+	for (std::pair<std::string, City*> city: _world->getCities())
 		std::cout << *city.second->getName() << ": " << city.second->getPopulation() << std::endl;
 	std::cout << std::endl;
 	return true;

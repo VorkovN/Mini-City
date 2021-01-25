@@ -39,6 +39,6 @@ class City
 	std::map<CarsTypes::Types, size_t> _resources;
 	std::map<CarsTypes::Types, std::list<Train*>> _railway_station;
 	size_t _population = 10;
-	const size_t _budget = 10;
+	size_t _budget = 10;
 	std::mutex _mu;
 };

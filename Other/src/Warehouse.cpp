@@ -17,16 +17,22 @@ void Warehouse::sellProduct(T resource)
 {
 	_city->_mu.lock();
 	std::cout << "sellProduct" << std::endl;
-	size_t resource_count = 0;
+	size_t sold_products;
 	_city->_mu.unlock();
 	while (true)
 	{
-		_city->_mu.lock();
-		resource_count = _city->getResources()[resource];
-		if (SELL_PRODUCT/1000 > resource_count)
-		resource_count -= SELL_PRODUCT++/1000;
-		_city->_mu.unlock();
 		sleep(rand() % 10 + 1);
+		_city->_mu.lock();
+		size_t &resource_count = _city->getResources()[resource];
+		sold_products = SELL_PRODUCT++/1000;
+		if (sold_products > resource_count)
+		{
+			std::cout << "game over" << std::endl;
+			exit(1);
+		}
+		resource_count -= sold_products;
+		_city->_budget += sold_products;
+		_city->_mu.unlock();
 	}
 }
 

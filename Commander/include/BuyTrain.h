@@ -1,9 +1,10 @@
 #pragma once
 #include "Command.h"
+#include "CarsTypes.h"
 #include <iostream>
 
-class BuyPassengerTrain : public Command
+class BuyTrain : public Command
 {
- public:
+public:
 	bool execute(std::vector<std::string> args_vector) const override;
 };
