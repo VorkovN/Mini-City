@@ -17,19 +17,22 @@ class Warehouse;
 class City
 {
  public:
-	friend class ResourceFactory;
-	friend class MatrinityHospital;
-	friend class Warehouse;
-
- public:
 	explicit City(std::string name, CarsTypes::Types resources_factory_type);
 
+	///GETTERS///
 	std::map<CarsTypes::Types, std::list<Train*>>& getRailwayStation();
 	std::map<CarsTypes::Types, size_t>& getResources();
-	size_t& getPopulation();
-	size_t& getBudget();
-	const std::string* getName();
-	const ResourceFactory* getResourcefactory();
+	const size_t getPopulation() const;
+	const size_t getBudget() const;
+	const std::string* getName() const;
+	const ResourceFactory* getResourcefactory() const;
+	std::mutex& getMutex();
+	///GETTERS///
+
+	///SETTERS///
+	void setPopulation(size_t population);
+	void setBudget(size_t budget);
+	///SETTERS///
 
 	~City();
  private:
@@ -41,5 +44,5 @@ class City
 	std::map<CarsTypes::Types, std::list<Train*>> _railway_station;
 	size_t _population = 10;
 	size_t _budget = 100;
-	std::mutex _mu;
+	std::mutex _mutex;
 };

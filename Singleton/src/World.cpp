@@ -29,7 +29,7 @@ bool World::buyTrain(const std::string& city_name, CarsTypes::Types cars_type, s
 	if(city->getBudget() < Train::car_price[cars_type] * cars_count)
 		return false;
 
-	city->getBudget() -= Train::car_price[cars_type] * cars_count;
+	city->setBudget(city->getBudget() - Train::car_price[cars_type] * cars_count);
 
 	Train* train;
 	if (cars_type < 0)

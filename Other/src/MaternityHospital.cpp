@@ -11,7 +11,7 @@ void MatrinityHospital::createChildren()
 {
 	while (true)
 	{
-		_city->getPopulation() += CREATE_CHILDREN++/1000;
+		_city->setPopulation(_city->getPopulation() + CREATE_CHILDREN++/1000);
 		sleep(rand() % 5 + 1);
 	}
 }

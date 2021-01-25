@@ -15,14 +15,14 @@ Warehouse::Warehouse(City* city) : _city(city)
 template<class T>
 void Warehouse::sellProduct(T resource)
 {
-	_city->_mu.lock();
+	_city->getMutex().lock();
 	std::cout << "sellProduct" << std::endl;
 	size_t sold_products;
-	_city->_mu.unlock();
+	_city->getMutex().unlock();
 	while (true)
 	{
 		sleep(rand() % 10 + 1);
-		_city->_mu.lock();
+		_city->getMutex().lock();
 		size_t &resource_count = _city->getResources()[resource];
 		sold_products = SELL_PRODUCT++/1000;
 		if (sold_products > resource_count)
@@ -31,8 +31,8 @@ void Warehouse::sellProduct(T resource)
 			exit(1);
 		}
 		resource_count -= sold_products;
-		_city->_budget += sold_products;
-		_city->_mu.unlock();
+		_city->setBudget(_city->getBudget() + sold_products);
+		_city->getMutex().unlock();
 	}
 }
 

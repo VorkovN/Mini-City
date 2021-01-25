@@ -11,9 +11,9 @@ void ResourceFactory::resource_factory_working()
 {
 	while (true)
 	{
-		_city->_mu.lock();
+		_city->getMutex().lock();
 		_city->getResources()[_resource] += _productivity;
-		_city->_mu.unlock();
+		_city->getMutex().unlock();
 		sleep(rand() % 5 + 1);
 	}
 }
