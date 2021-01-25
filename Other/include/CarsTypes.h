@@ -6,7 +6,7 @@
 class CarsTypes
 {
  public:
-	enum Types
+	enum Types//todo поправить костыль
 	{
 		SIMPLE = -2,
 		BILEVEL = -1,
@@ -18,11 +18,11 @@ class CarsTypes
 
  private:
 	static const std::map<std::string, Types> _resources;
-	static const std::map<std::string, Types> _passenger_cars_types;
+	static const std::map<std::string, Types> _cars_types;
 
  public:
-	static Types getFrCarTypes(const std::string& str);
-	static Types getPasCarTypes(const std::string& str);
+	static Types getResurcesTypes(const std::string& str);
+	static Types getCarTypes(const std::string& str);
 
 };
 

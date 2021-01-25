@@ -20,8 +20,8 @@ class World
  public:
 	static World* GetWorld();
 
-	World(World& other) = delete;//запрещает клониррование
-	void operator=(const World&) = delete;//удаляет присваивание
+	World(World& other) = delete;
+	void operator=(const World&) = delete;
 	std::unordered_map<std::string, City*>& getCities();
 
 	bool buildCity(const std::string& city_name, CarsTypes::Types resources_factory_type);

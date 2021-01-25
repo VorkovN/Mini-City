@@ -5,22 +5,22 @@ PassengerTrain::PassengerTrain(CarsTypes::Types cars_type, size_t cars_count) : 
 	std::cout << "new passenger train" << std::endl;
 }
 
-void PassengerTrain::move(City* city_from, City* city_to)
+void PassengerTrain::move(City* city_from, City* city_to, size_t cars_count)
 {
 	city_from->getRailwayStation()[getCarsType()].remove(this);
 	if (getCarsType() == CarsTypes::BILEVEL)
-		city_from->getPopulation() -= 2 * getCarsCount();
+		city_from->getPopulation() -= 2 * cars_count;
 	else
-		city_from->getPopulation() -= getCarsCount();
+		city_from->getPopulation() -= cars_count;
 	std::cout << "train left from " << *city_from->getName() << std::endl;
 
 
 
 	city_to->getRailwayStation()[getCarsType()].push_back(this);
 	if (getCarsType() == CarsTypes::BILEVEL)
-		city_to->getPopulation() += 2 * getCarsCount();
+		city_to->getPopulation() += 2 * cars_count;
 	else
-		city_to->getPopulation() += getCarsCount();
+		city_to->getPopulation() += cars_count;
 	std::cout << "train arrived to " << *city_to->getName() << std::endl;
 
 }

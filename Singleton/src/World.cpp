@@ -28,7 +28,6 @@ bool World::buyFreightTrain(const std::string& city_name, CarsTypes::Types cars_
 	City* city = _cities.at(city_name);
 	city->getRailwayStation()[cars_type].push_back(train);
 
-
 	return true;
 }
 
@@ -61,7 +60,7 @@ bool World::sendTrain(const std::string& name_city_from, const std::string& name
 		if (cars_count <= cur_train->getCarsCount() && cur_train->getCarsCount() < train->getCarsCount())
 			train = cur_train;
 
-	train->move(city_from, city_to);
+	train->move(city_from, city_to, cars_count);
 	return true;
 }
 
