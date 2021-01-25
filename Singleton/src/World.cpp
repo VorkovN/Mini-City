@@ -24,12 +24,18 @@ bool World::buyTrain(const std::string& city_name, CarsTypes::Types cars_type, s
 	if (_cities.find(city_name) == _cities.end())
 		return false;
 
+	City* city = _cities.at(city_name);
+
+	if(city->getBudget() < Train::car_price[cars_type] * cars_count)
+		return false;
+
+	city->getBudget() -= Train::car_price[cars_type] * cars_count;
+
 	Train* train;
 	if (cars_type < 0)
 		train = _world->_passengerTtrainFactory->createTrain(cars_type, cars_count);
 	else
 		train = _world->_freighTtrainFactory->createTrain(cars_type, cars_count);
-	City* city = _cities.at(city_name);
 	city->getRailwayStation()[cars_type].push_back(train);
 
 	return true;
@@ -111,6 +117,15 @@ bool World::showPopulation()
 	std::cout << std::endl;
 	for (std::pair<std::string, City*> city: _world->getCities())
 		std::cout << *city.second->getName() << ": " << city.second->getPopulation() << std::endl;
+	std::cout << std::endl;
+	return true;
+}
+
+bool World::showBudget()
+{
+	std::cout << std::endl;
+	for (std::pair<std::string, City*> city: _world->getCities())
+		std::cout << *city.second->getName() << ": " << city.second->getBudget() << std::endl;
 	std::cout << std::endl;
 	return true;
 }

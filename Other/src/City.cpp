@@ -42,3 +42,8 @@ const ResourceFactory* City::getResourcefactory()
 {
 	return _resource_factory;
 }
+
+size_t& City::getBudget()
+{
+	return _budget;
+}

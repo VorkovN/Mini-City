@@ -7,6 +7,7 @@
 #include "ShowTrains.h"
 #include "ShowFactories.h"
 #include "ShowProducts.h"
+#include "ShowBudget.h"
 #include "Help.h"
 #include "Exit.h"
 
@@ -17,6 +18,7 @@ CommandExecuter::CommandExecuter(): _commands_map({
 					  {"build_factory", new BuildFactory},//город, тип фабрики
 					  {"buy_train", new BuyTrain},//город, тип, кол-во вагонов
 					  {"show_population", new ShowPopulation},//город, тип продукта
+					  {"show_budget", new ShowBudget},//город, тип продукта
 					  {"send_train", new SendTrain},//откуда, куда, номер поезда
 					  {"show_trains", new ShowTrains},//город
 					  {"show_products", new ShowProducts},//город

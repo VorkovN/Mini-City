@@ -27,6 +27,7 @@ class City
 	std::map<CarsTypes::Types, std::list<Train*>>& getRailwayStation();
 	std::map<CarsTypes::Types, size_t>& getResources();
 	size_t& getPopulation();
+	size_t& getBudget();
 	const std::string* getName();
 	const ResourceFactory* getResourcefactory();
 
@@ -39,6 +40,6 @@ class City
 	std::map<CarsTypes::Types, size_t> _resources;
 	std::map<CarsTypes::Types, std::list<Train*>> _railway_station;
 	size_t _population = 10;
-	size_t _budget = 10;
+	size_t _budget = 100;
 	std::mutex _mu;
 };

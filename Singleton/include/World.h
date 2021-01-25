@@ -30,6 +30,7 @@ class World
 	bool showTrains(const std::string& city);
 	bool showFactories();
 	bool showPopulation();
+	bool showBudget();
 
  protected:
 	static World* _world;

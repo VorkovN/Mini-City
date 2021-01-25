@@ -10,6 +10,7 @@ set(COMMANDER Commander/src/CommandExecuter.cpp
         Commander/src/BuildCity.cpp
         Commander/src/BuyTrain.cpp
         Commander/src/SendTrain.cpp
+        Commander/src/ShowBudget.cpp
         Commander/src/ShowPopulation.cpp
         Commander/src/ShowFactories.cpp
         Commander/src/ShowProducts.cpp
