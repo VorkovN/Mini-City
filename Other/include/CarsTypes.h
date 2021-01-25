@@ -13,7 +13,6 @@ class CarsTypes
 		ORE = 0,
 		WOOD = 1,
 		LIQUID = 2,
-
 	};
 
  private:

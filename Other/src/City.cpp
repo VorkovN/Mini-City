@@ -1,10 +1,14 @@
 #include "City.h"
 
-City::City(std::string name, CarsTypes::Types resources_factory_type): _name{new std::string(std::move(name))},
-	_resource_factory(new ResourceFactory(resources_factory_type, this)),
-	_mat_hosp(new MatrinityHospital(this)), //_warehouse(new Warehouse(this)),
-	_resources({{CarsTypes::ORE, 15}, {CarsTypes::WOOD, 15},{CarsTypes::LIQUID, 15}})
+City::City(std::string name, CarsTypes::Types resources_factory_type)
 {
+	//_mu.lock();
+	_name = new std::string(std::move(name));
+	_resource_factory = new ResourceFactory(resources_factory_type, this);
+	_mat_hosp = new MatrinityHospital(this),
+	_warehouse = new Warehouse(this),
+	_resources = {{CarsTypes::ORE, 15}, {CarsTypes::WOOD, 15},{CarsTypes::LIQUID, 15}};
+	//_mu.unlock();
 	std::cout << "new city" << std::endl;
 }
 

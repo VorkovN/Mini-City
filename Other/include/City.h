@@ -32,7 +32,7 @@ class City
 
 	~City();
  private:
-	const std::string* const _name;
+	const std::string* _name;//вернуть конст
 	const ResourceFactory* _resource_factory;
 	const MatrinityHospital* _mat_hosp;
 	const Warehouse* _warehouse;
