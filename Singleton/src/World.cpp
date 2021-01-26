@@ -143,10 +143,11 @@ bool World::sellTrain(const std::string& city_name, CarsTypes::Types cars_type, 
 
 	for (Train* cur_train: city->getRailwayStation()[cars_type])
 		if (cur_train->getCarsCount() == cars_count && cur_train->getCarsType() == cars_type){
-			Train* train = cur_train;
 			city->getRailwayStation()[cars_type].remove(cur_train);
+			city->setBudget(city->getBudget() + (Train::car_price[cars_type] * cars_count) / 2);
 			delete cur_train;
-			return false;
+			std::cout << "train sold" << std::endl;
+			return true;
 		}
 
 
