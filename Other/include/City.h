@@ -36,7 +36,7 @@ class City
 
 	~City();
  private:
-	const std::string* _name;//вернуть конст
+	const std::string* const _name;//вернуть конст
 	const ResourceFactory* _resource_factory;//создает ресурсы в отдельном потоке
 	const MatrinityHospital* _mat_hosp;//создает население в отдельном потоке
 	const Warehouse* _warehouse;//скупает ресурсы со склада в 3 отдельных шаблонных потоках

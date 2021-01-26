@@ -1,4 +1,5 @@
 #include "Warehouse.h"
+#include "World.h"
 
 Warehouse::Warehouse(City* city) : _city(city)
 {
@@ -26,7 +27,12 @@ void Warehouse::sellProduct(T resource)
 		size_t &resource_count = _city->getResources()[resource];
 		sold_products = _city->getPopulation()/SELLING_K + 1;
 		if (sold_products > resource_count)
-			throw "Game over (resource " + std::to_string(resource) + " run out)" ;
+		{
+			std::cerr << "Game over (resource " + std::to_string(resource) + " run out)" ;
+			delete World::GetWorld();
+			exit(0);
+		}
+
 		resource_count -= sold_products;
 		_city->setBudget(_city->getBudget() + sold_products);
 		_city->getMutex().unlock();

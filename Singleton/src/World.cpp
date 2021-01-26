@@ -156,6 +156,8 @@ World::~World()
 {
 	delete _freighTtrainFactory;
 	delete _passengerTtrainFactory;
+	for (auto &[str, city]: _cities)// к сожалению есть только в с++ 20
+		delete city;
 }
 
 
