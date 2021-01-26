@@ -1,6 +1,6 @@
 #pragma once
+#include <exception>
 #include "World.h"
-#include <vector>
 
 class Command
 {

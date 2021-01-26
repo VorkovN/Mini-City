@@ -6,17 +6,33 @@ City::City(std::string name, CarsTypes::Types resources_factory_type)
 	_name = new std::string(std::move(name));
 	_resource_factory = new ResourceFactory(resources_factory_type, this);
 	_mat_hosp = new MatrinityHospital(this),
-	_warehouse = new Warehouse(this),
-	_resources = {{CarsTypes::ORE, 15}, {CarsTypes::WOOD, 15},{CarsTypes::LIQUID, 15}};
+			_warehouse = new Warehouse(this),
+			_resources = {{ CarsTypes::ORE, 15 }, { CarsTypes::WOOD, 15 }, { CarsTypes::LIQUID, 15 }};
 	//_mutex.unlock();
 	std::cout << "new city" << std::endl;
 }
 
 City::~City()
 {
+
 	delete _resource_factory;
 	delete _name;
+	delete _mat_hosp;
+	delete _warehouse;
+	for (std::pair<CarsTypes::Types, std::list<Train*>> trains : _railway_station)
+	{
+		std::_List_iterator<Train*> current = trains.second.begin();
+		std::_List_iterator<Train*> next;
+		while (*current != NULL)
+		{
+			next = current++;
+			delete *current;
+			current = next;
+		}
+	}
+
 }
+
 ///GETTERS///
 std::map<CarsTypes::Types, std::list<Train*>>& City::getRailwayStation()
 {

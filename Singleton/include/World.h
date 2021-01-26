@@ -13,6 +13,8 @@ class World
 	World();
 
  public:
+	~World();
+
 	static World* GetWorld();
 
 	World(World& other) = delete;
@@ -21,6 +23,7 @@ class World
 
 	bool buildCity(const std::string& city_name, CarsTypes::Types resources_factory_type);
 	bool buyTrain(const std::string& city_name, CarsTypes::Types cars_type, size_t cars_count);
+	bool sellTrain(const std::string& city_name, CarsTypes::Types cars_type, size_t cars_count);
 	bool sendTrain(const std::string& city_from, const std::string& city_to, CarsTypes::Types cars_type, size_t cars_count);
 	bool showProducts(const std::string& city);
 	bool showTrains(const std::string& city);

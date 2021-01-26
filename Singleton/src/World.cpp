@@ -64,7 +64,7 @@ bool World::sendTrain(const std::string& name_city_from, const std::string& name
 World* World::GetWorld()
 {
 	if (_world == nullptr)
-		_world = new World();
+		_world = new World;
 	return _world;
 }
 
@@ -129,4 +129,33 @@ bool World::showBudget()
 	std::cout << std::endl;
 	return true;
 }
+
+bool World::sellTrain(const std::string& city_name, CarsTypes::Types cars_type, size_t cars_count)
+{
+	if (_cities.find(city_name) == _cities.end())
+		return false;
+	City* city = _cities.at(city_name);
+
+	if (city->getRailwayStation()[cars_type].empty())
+		return false;
+
+	for (Train* cur_train: city->getRailwayStation()[cars_type])
+		if (cur_train->getCarsCount() == cars_count && cur_train->getCarsType() == cars_type){
+			Train* train = cur_train;
+			city->getRailwayStation()[cars_type].remove(cur_train);
+			delete cur_train;
+			return false;
+		}
+
+
+
+	return false;
+}
+
+World::~World()
+{
+	delete _freighTtrainFactory;
+	delete _passengerTtrainFactory;
+}
+
 

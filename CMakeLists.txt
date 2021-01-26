@@ -9,6 +9,7 @@ set(COMMANDER Commander/src/CommandExecuter.cpp
         Commander/src/BuildFactory.cpp
         Commander/src/BuildCity.cpp
         Commander/src/BuyTrain.cpp
+        Commander/src/SellTrain.cpp
         Commander/src/SendTrain.cpp
         Commander/src/ShowBudget.cpp
         Commander/src/ShowPopulation.cpp

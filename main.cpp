@@ -12,38 +12,48 @@ int main()
 	CommandExecuter commandExecuter;
 	while (true)
 	{
-		std::string command_word, arg;
-		std::vector<std::string> args_vector;
-		std::cin >> command_word;
-
-		const auto command = commandExecuter.getCommands().find(command_word);
-
-		if (command != commandExecuter.getCommands().end())
+		try//исключение нужно для выхода из цикла при завершении игры, ибо после цикла нужен deletе на мир => нельзя exit(0);
 		{
-			while (std::cin.peek() != '\n')
-			{
-				std::cin >> arg;
-				args_vector.push_back(arg);
-			}
+			std::string command_word, arg;
+			std::vector<std::string> args_vector;
+			std::cin >> command_word;
 
-			if (args_vector.empty())
-			{
-				if (!command->second->execute())
-					std::cout << "execute error" << std::endl;
-			}
+			const auto command = commandExecuter.getCommands().find(command_word);
 
+			if (command != commandExecuter.getCommands().end())
+			{
+				while (std::cin.peek() != '\n')
+				{
+					std::cin >> arg;
+					args_vector.push_back(arg);
+				}
+
+				if (args_vector.empty())
+				{
+					if (!command->second->execute())
+						std::cout << "execute error" << std::endl;
+				}
+
+				else
+				{
+					if (!command->second->execute(args_vector))
+						std::cout << "execute error" << std::endl;
+				}
+
+			}
 			else
 			{
-				if (!command->second->execute(args_vector))
-					std::cout << "execute error" << std::endl;
+				std::cout << "command type error" << std::endl;
 			}
-
 		}
-		else
+
+		catch (std::string& err)
 		{
-			std::cout << "command type error" << std::endl;
+			std::cout << err << std::endl;
+			break;
 		}
 	}
+	delete world;// проблема в том что я не могу создать умный указатель на protected object
 	return 0;
 }
 
