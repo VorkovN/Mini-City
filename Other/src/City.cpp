@@ -16,16 +16,12 @@ City::~City()
 	delete _name;
 	delete _mat_hosp;
 	delete _warehouse;
-	for (std::pair<CarsTypes::Types, std::list<Train*>> trains : _railway_station)//todo проверить фором
+	//delete _railway_station[CarsTypes::Types::WOOD].front();
+
+	for (std::pair<CarsTypes::Types, std::list<Train*>> trains : _railway_station)
 	{
-		std::_List_iterator<Train*> current = trains.second.begin();
-		std::_List_iterator<Train*> next;
-		while (*current != NULL)
-		{
-			next = current++;
-			delete *current;
-			current = next;
-		}
+		for(Train* train : trains.second)
+			delete train;
 	}
 
 }
