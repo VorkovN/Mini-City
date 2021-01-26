@@ -47,7 +47,7 @@ int main()
 			}
 		}
 
-		catch (std::string& err)
+		catch (const char* err)
 		{
 			std::cout << err << std::endl;
 			break;
