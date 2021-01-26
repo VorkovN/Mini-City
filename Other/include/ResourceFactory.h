@@ -9,11 +9,11 @@ class City;
 class ResourceFactory
 {
  public:
-	ResourceFactory(CarsTypes::Types resource, City *city);
+	ResourceFactory(CarsTypes::Types resource, City &city);
 	CarsTypes::Types getResource() const;
 
  private:
-	City *_city = nullptr;
+	City &_city;
 	CarsTypes::Types _resource;
 	size_t _productivity = 1; //how mach resources created for one cicle
 

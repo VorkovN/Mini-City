@@ -3,6 +3,7 @@
 #include <utility>
 
 World* World::_world = nullptr;
+bool  World::ALIVE_WORLD = true;
 
 World::World()
 {
@@ -61,12 +62,13 @@ bool World::sendTrain(const std::string& name_city_from, const std::string& name
 	return true;
 }
 
-World* World::GetWorld()
+World* World::getCreatedWorld()
 {
 	if (_world == nullptr)
 		_world = new World;
 	return _world;
 }
+
 
 std::unordered_map<std::string, City*>& World::getCities()
 {

@@ -17,7 +17,7 @@ class World
  public:
 	~World();
 
-	static World* GetWorld();
+	static World* getCreatedWorld();
 
 	World(World& other) = delete;
 	void operator=(const World&) = delete;
@@ -37,6 +37,7 @@ class World
 	static World* _world;
 
  public:
+	static bool ALIVE_WORLD;//чтобы проверять наличие мира из потоков и закрывать их
 	TrainFactory* _freighTtrainFactory = new FreightTrainFactory;//фабрика товарных поездов
 	TrainFactory* _passengerTtrainFactory = new PassengerTrainFactory;//фабрика пассажирских поездов
 

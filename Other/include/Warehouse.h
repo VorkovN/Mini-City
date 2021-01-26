@@ -10,7 +10,7 @@ class City;
 class Warehouse
 {
  public:
-	Warehouse(City *city);
+	Warehouse(City &city);
 
  private:
 	template<class T>
@@ -18,5 +18,5 @@ class Warehouse
 
  private:
 	size_t SELLING_K = 100;
-	City* _city = nullptr;
+	City& _city;
 };

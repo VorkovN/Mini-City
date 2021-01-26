@@ -8,5 +8,5 @@ public:
 	virtual bool execute() const;
 	virtual bool execute(std::vector<std::string> agrs_vector) const;
 protected:
-	World *_world = World::GetWorld();
+	World *_world = World::getCreatedWorld();
 };

@@ -7,7 +7,7 @@
 int main()
 {
 	srand(time(nullptr));
-	World* world = World::GetWorld();
+	World* world = World::getCreatedWorld();
 	std::cout << "Input you command (command help can help you)" << std::endl;
 	CommandExecuter commandExecuter;
 	while (true)
