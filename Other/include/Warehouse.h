@@ -17,6 +17,6 @@ class Warehouse
 	void sellProduct(T resource);
 
  private:
-	size_t SELL_PRODUCT = 1000;
+	size_t SELLING_K = 100;
 	City* _city = nullptr;
 };

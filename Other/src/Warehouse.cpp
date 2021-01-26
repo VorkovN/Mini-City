@@ -24,7 +24,7 @@ void Warehouse::sellProduct(T resource)
 		sleep(rand() % 10 + 1);
 		_city->getMutex().lock();
 		size_t &resource_count = _city->getResources()[resource];
-		sold_products = SELL_PRODUCT++/1000;
+		sold_products = _city->getPopulation()/SELLING_K;
 		if (sold_products > resource_count)
 		{
 			std::cout << "game over" << std::endl;

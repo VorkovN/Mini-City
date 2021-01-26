@@ -9,12 +9,8 @@
 
 class World
 {
- public:
-	TrainFactory* _freighTtrainFactory = new FreightTrainFactory;
-	TrainFactory* _passengerTtrainFactory = new PassengerTrainFactory;
-
- private:
-	std::unordered_map<std::string, City*> _cities;
+ protected:
+	World();
 
  public:
 	static World* GetWorld();
@@ -35,7 +31,11 @@ class World
  protected:
 	static World* _world;
 
- protected:
-	World();
+ public:
+	TrainFactory* _freighTtrainFactory = new FreightTrainFactory;//фабрика товарных поездов
+	TrainFactory* _passengerTtrainFactory = new PassengerTrainFactory;//фабрика пассажирских поездов
+
+ private:
+	std::unordered_map<std::string, City*> _cities;//карта городов
 
 };

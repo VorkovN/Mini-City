@@ -37,12 +37,12 @@ class City
 	~City();
  private:
 	const std::string* _name;//вернуть конст
-	const ResourceFactory* _resource_factory;
-	const MatrinityHospital* _mat_hosp;
-	const Warehouse* _warehouse;
-	std::map<CarsTypes::Types, size_t> _resources;
-	std::map<CarsTypes::Types, std::list<Train*>> _railway_station;
-	size_t _population = 10;
-	size_t _budget = 100;
+	const ResourceFactory* _resource_factory;//создает ресурсы в отдельном потоке
+	const MatrinityHospital* _mat_hosp;//создает население в отдельном потоке
+	const Warehouse* _warehouse;//скупает ресурсы со склада в 3 отдельных шаблонных потоках
+	std::map<CarsTypes::Types, size_t> _resources;//хранилище ресурсов города
+	std::map<CarsTypes::Types, std::list<Train*>> _railway_station;//хранилище поездов
+	size_t _population = 10;//население города
+	size_t _budget = 100;//бюджет города
 	std::mutex _mutex;
 };
