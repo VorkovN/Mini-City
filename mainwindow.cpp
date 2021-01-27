@@ -1,21 +1,21 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "World.h"
-#include "CommandExecuter.h"
 #include <iostream>
-#include <sstream>
 
 bool MainWindow::flag = false;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui(new Ui::MainWindow),
+	  _timer(new QTimer())
 {
     ui->setupUi(this);
-    ui->inputField->setText("Input you command (command help can help you)");
+	std::cout.rdbuf( oss.rdbuf());
+	//std::cerr.rdbuf( oss.rdbuf());
+    ui->inputField->setText("Input you command");
 
-	timer = new QTimer();
-	connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
-	timer->start(1000);
+	connect(_timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
+	_timer->start(200);
 }
 
 MainWindow::~MainWindow()
@@ -26,10 +26,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_executeButton_clicked()
 {
-
     _command_str = ui->inputField->text();
-	std::cout.rdbuf( oss.rdbuf() );
-
 }
 
 void MainWindow::slotTimerAlarm()
@@ -39,6 +36,8 @@ void MainWindow::slotTimerAlarm()
 
 	if(_command_str.toStdString() != "")
 	{
+		oss.str("");
+
 		std::istringstream sstr(_command_str.toStdString());
 
 		sstr >> command_word;
@@ -72,6 +71,13 @@ void MainWindow::slotTimerAlarm()
 		}
 	}
 	ui->outputField->setText(QString::fromStdString(oss.str()));
+	sleep(1);
+	if (!World::ALIVE_WORLD)
+	{
+		_timer->stop();
+		sleep(8);
+		delete World::getCreatedWorld();
+	}
 	_command_str = "";
 }
 

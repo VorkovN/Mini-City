@@ -3,17 +3,9 @@
 
 Warehouse::Warehouse(City& city) : _city(city)
 {
-	std::thread f1(&Warehouse::sellProduct<decltype(CarsTypes::ORE)>, this, CarsTypes::ORE);
-	std::thread f2(&Warehouse::sellProduct<decltype(CarsTypes::WOOD)>, this, CarsTypes::WOOD);
-	std::thread f3(&Warehouse::sellProduct<decltype(CarsTypes::LIQUID)>, this, CarsTypes::LIQUID);
-	f1.detach();
-	f2.detach();
-	f3.detach();
-
-	World* world = World::getCreatedWorld();//
-	world->addThread(std::move(f1));//
-	world->addThread(std::move(f2));//
-	world->addThread(std::move(f3));//
+	std::thread(&Warehouse::sellProduct<decltype(CarsTypes::ORE)>, this, CarsTypes::ORE).detach();
+	std::thread(&Warehouse::sellProduct<decltype(CarsTypes::WOOD)>, this, CarsTypes::WOOD).detach();
+	std::thread(&Warehouse::sellProduct<decltype(CarsTypes::LIQUID)>, this, CarsTypes::LIQUID).detach();
 
 	std::cout << "new warehouse" << std::endl;
 }
@@ -33,11 +25,11 @@ void Warehouse::sellProduct(T resource)
 		_city.getMutex().unlock();
 		if (sold_products > resource_count)
 		{
-			std::cerr << "Game over (resource " + std::to_string(resource) + " run out)" ;
+			std::cout << "Game over (resource " + std::to_string(resource) + " run out)" ;
 			World::ALIVE_WORLD = false;
 			break;
 		}
-
+		_city.getMutex().lock();
 		resource_count -= sold_products;
 		_city.setBudget(_city.getBudget() + sold_products);
 		_city.getMutex().unlock();
@@ -45,6 +37,8 @@ void Warehouse::sellProduct(T resource)
 			break;
 		sleep(rand() % 6 + 1);
 	}
-	std::cout << "W" << std::endl;
+	_city.getMutex().lock();
+	std::cout << "Warehouse destroyed" << std::endl;
+	_city.getMutex().unlock();
 }
 

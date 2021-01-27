@@ -3,9 +3,8 @@
 
 ResourceFactory::ResourceFactory(CarsTypes::Types resource, City& city) : _city(city), _resource(resource)
 {
-	std::thread func_thread(&ResourceFactory::resource_factory_working, this);
-	func_thread.detach();
-	World::getCreatedWorld()->addThread(std::move(func_thread));//
+	std::thread(&ResourceFactory::resource_factory_working, this).detach();
+
 	std::cout << "new factory" << std::endl;
 }
 
@@ -20,7 +19,9 @@ void ResourceFactory::resource_factory_working()
 			break;
 		sleep(rand() % 3 + 1);
 	}
-	std::cout << "RF" << std::endl;
+	_city.getMutex().lock();
+	std::cout << "Resource Factory destroyed" << std::endl;
+	_city.getMutex().unlock();
 }
 
 CarsTypes::Types ResourceFactory::getResource() const

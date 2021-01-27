@@ -18,7 +18,7 @@ bool World::buildCity(const std::string& city_name, CarsTypes::Types resources_f
 	}
 	else
 	{
-		std::cerr << "city " << city_name <<" already exist" << std::endl;
+		std::cout << "city " << city_name <<" already exist" << std::endl;
 		return false;
 	}
 
@@ -29,7 +29,7 @@ bool World::buyTrain(const std::string& city_name, CarsTypes::Types cars_type, s
 {
 	if (!_cities.contains(city_name))
 	{
-		std::cerr << "city " << city_name <<" doesn't exist" << std::endl;
+		std::cout << "city " << city_name <<" doesn't exist" << std::endl;
 		return false;
 	}
 
@@ -38,7 +38,7 @@ bool World::buyTrain(const std::string& city_name, CarsTypes::Types cars_type, s
 	const size_t required_budget = Train::car_price[cars_type] * cars_count;
 	if(city->getBudget() < required_budget)
 	{
-		std::cerr << "Not enough money, city budget: " << city->getBudget() <<", required budget: " << required_budget << std::endl;
+		std::cout << "Not enough money, city budget: " << city->getBudget() <<", required budget: " << required_budget << std::endl;
 		return false;
 	}
 
@@ -59,13 +59,13 @@ bool World::sendTrain(const std::string& name_city_from, const std::string& name
 {
 	if (!_cities.contains(name_city_from))
 	{
-		std::cerr << "city " << name_city_from <<" doesn't exist" << std::endl;
+		std::cout << "city " << name_city_from <<" doesn't exist" << std::endl;
 		return false;
 	}
 
 	if (!_cities.contains(name_city_to))
 	{
-		std::cerr << "city " << name_city_to <<" doesn't exist" << std::endl;
+		std::cout << "city " << name_city_to <<" doesn't exist" << std::endl;
 		return false;
 	}
 
@@ -76,7 +76,7 @@ bool World::sendTrain(const std::string& name_city_from, const std::string& name
 
 	if (city_from->getRailwayStation()[cars_type].empty())
 	{
-		std::cerr << "railway station hasn't any trains of this type" << std::endl;
+		std::cout << "railway station hasn't any trains of this type" << std::endl;
 		return false;
 	}
 
@@ -95,7 +95,7 @@ bool World::sellTrain(const std::string& city_name, CarsTypes::Types cars_type, 
 {
 	if (!_cities.contains(city_name))
 	{
-		std::cerr << "city " << city_name <<" doesn't exist" << std::endl;
+		std::cout << "city " << city_name <<" doesn't exist" << std::endl;
 		return false;
 	}
 
@@ -103,7 +103,7 @@ bool World::sellTrain(const std::string& city_name, CarsTypes::Types cars_type, 
 
 	if (city->getRailwayStation()[cars_type].empty())
 	{
-		std::cerr << "railway station hasn't any trains of this type" << std::endl;
+		std::cout << "railway station hasn't any trains of this type" << std::endl;
 		return false;
 	}
 
@@ -115,7 +115,7 @@ bool World::sellTrain(const std::string& city_name, CarsTypes::Types cars_type, 
 			std::cout << "train sold" << std::endl;
 			return true;
 		}
-	std::cerr << "such train doesn't exist" << std::endl;
+	std::cout << "such train doesn't exist" << std::endl;
 	return false;
 }
 
@@ -123,7 +123,7 @@ bool World::showProducts(const std::string& city_name)
 {
 	if (!_cities.contains(city_name))
 	{
-		std::cerr << "city " << city_name <<" doesn't exist" << std::endl;
+		std::cout << "city " << city_name <<" doesn't exist" << std::endl;
 		return false;
 	}
 
@@ -140,7 +140,7 @@ bool World::showTrains(const std::string& city_name)
 {
 	if (!_cities.contains(city_name))
 	{
-		std::cerr << "city " << city_name <<" doesn't exist" << std::endl;
+		std::cout << "city " << city_name <<" doesn't exist" << std::endl;
 		return false;
 	}
 
@@ -191,9 +191,6 @@ World* World::getCreatedWorld()
 
 World::~World()
 {
-//	for(std::thread &thread : _threads)
-//		thread.std::thread::~thread();
-//	sleep(6);
 	delete _freighTtrainFactory;
 	delete _passengerTtrainFactory;
 	for (auto &[str, city]: _cities)// к сожалению есть только в с++ 20

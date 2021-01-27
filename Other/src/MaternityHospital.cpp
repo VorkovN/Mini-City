@@ -3,9 +3,8 @@
 
 MatrinityHospital::MatrinityHospital(City& city): _city(city)
 {
-	std::thread func_thread(&MatrinityHospital::createChildren, this);
-	func_thread.detach();
-	World::getCreatedWorld()->addThread(std::move(func_thread));//
+	std::thread(&MatrinityHospital::createChildren, this).detach();
+
 	std::cout << "new maternity hospital" << std::endl;
 }
 
@@ -13,10 +12,14 @@ void MatrinityHospital::createChildren()
 {
 	while (true)
 	{
+		_city.getMutex().lock();
 		_city.setPopulation(_city.getPopulation() + CREATE_CHILDREN++/1000);
+		_city.getMutex().unlock();
 		if (!World::ALIVE_WORLD)
 			break;
 		sleep(rand() % 4 + 1);
 	}
-	std::cout << "MH" << std::endl;
+	_city.getMutex().lock();
+	std::cout << "Meternity house destroyed" << std::endl;
+	_city.getMutex().unlock();
 }

@@ -28,7 +28,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-	QTimer *timer;
+	QTimer *_timer;
 	World* _world = World::getCreatedWorld();
 	CommandExecuter _commandExecuter;
 	QString _command_str = "";
