@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QTimer>
 #include <QTime>
+#include <sstream>
 #include "World.h"
 #include "CommandExecuter.h"
 
@@ -30,6 +31,8 @@ private:
 	QTimer *timer;
 	World* _world = World::getCreatedWorld();
 	CommandExecuter _commandExecuter;
+	QString _command_str = "";
+	std::ostringstream oss;
 
 };
 #endif // MAINWINDOW_H

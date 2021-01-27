@@ -3,6 +3,8 @@
 #include "World.h"
 #include "CommandExecuter.h"
 #include <iostream>
+#include <sstream>
+
 bool MainWindow::flag = false;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -25,8 +27,8 @@ MainWindow::~MainWindow()
 void MainWindow::on_executeButton_clicked()
 {
 
-    QString command_str = ui->inputField->text();
-    ui->outputField->setText(command_str);
+    _command_str = ui->inputField->text();
+	std::cout.rdbuf( oss.rdbuf() );
 
 }
 
@@ -34,34 +36,42 @@ void MainWindow::slotTimerAlarm()
 {
 	std::string command_word = "", arg = "";
 	std::vector<std::string> args_vector;
-	std::cout << "output" << std::endl;
 
-	const auto command = _commandExecuter.getCommands().find(command_word);
-
-	if (command != _commandExecuter.getCommands().end())
+	if(_command_str.toStdString() != "")
 	{
-		while (std::cin.peek() != '\n')
-		{
-			std::cin >> arg;
-			args_vector.push_back(arg);
-		}
+		std::istringstream sstr(_command_str.toStdString());
 
-		if (args_vector.empty())
-		{
-			if (!command->second->execute())
-				std::cout << "execute error" << std::endl;
-		}
+		sstr >> command_word;
 
+		const auto command = _commandExecuter.getCommands().find(command_word);
+
+		if (command != _commandExecuter.getCommands().end())
+		{
+			while (sstr.peek() != '\n' && !sstr.eof())
+			{
+				sstr >> arg;
+				args_vector.push_back(arg);
+			}
+
+			if (args_vector.empty())
+			{
+				if (!command->second->execute())
+					std::cout << "execute error" << std::endl;
+			}
+
+			else
+			{
+				if (!command->second->execute(args_vector))
+					std::cout << "execute error" << std::endl;
+			}
+
+		}
 		else
 		{
-			if (!command->second->execute(args_vector))
-				std::cout << "execute error" << std::endl;
+			std::cout << "command type error" << std::endl;
 		}
-
 	}
-	else
-	{
-		std::cout << "command type error" << std::endl;
-	}
+	ui->outputField->setText(QString::fromStdString(oss.str()));
+	_command_str = "";
 }
 
