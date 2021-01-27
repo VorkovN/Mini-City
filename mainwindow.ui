@@ -27,19 +27,6 @@
      <string>Execute</string>
     </property>
    </widget>
-   <widget class="QLabel" name="outputField">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>20</y>
-      <width>481</width>
-      <height>501</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Output field</string>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="inputField">
     <property name="geometry">
      <rect>
@@ -71,6 +58,16 @@ show_population - show population in each city
 exit - game over
 passenger car types: bilevel, simple
 freight car types: ore, wood, liquid</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit">
+    <property name="geometry">
+     <rect>
+      <x>33</x>
+      <y>30</y>
+      <width>541</width>
+      <height>481</height>
+     </rect>
     </property>
    </widget>
   </widget>

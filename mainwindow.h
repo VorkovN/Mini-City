@@ -29,7 +29,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
 	QTimer *_timer;
-	World* _world = World::getCreatedWorld();
+	World* _world;
 	CommandExecuter _commandExecuter;
 	QString _command_str = "";
 	std::ostringstream oss;

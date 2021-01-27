@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 	std::cout.rdbuf( oss.rdbuf());
+	_world = World::getCreatedWorld();
 	//std::cerr.rdbuf( oss.rdbuf());
     ui->inputField->setText("Input you command");
 
@@ -36,8 +37,6 @@ void MainWindow::slotTimerAlarm()
 
 	if(_command_str.toStdString() != "")
 	{
-		oss.str("");
-
 		std::istringstream sstr(_command_str.toStdString());
 
 		sstr >> command_word;
@@ -70,7 +69,7 @@ void MainWindow::slotTimerAlarm()
 			std::cout << "command type error" << std::endl;
 		}
 	}
-	ui->outputField->setText(QString::fromStdString(oss.str()));
+	ui->textEdit->setText(QString::fromStdString(oss.str()));
 	sleep(1);
 	if (!World::ALIVE_WORLD)
 	{
