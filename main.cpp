@@ -8,10 +8,11 @@
 
 int main(int argc, char* argv[])
 {
+	srand(time(nullptr));
 	QApplication a(argc, argv);
 	MainWindow w;
 	w.show();
-	QApplication::exec();
+	a.exec();
 }
 
 //int main()
