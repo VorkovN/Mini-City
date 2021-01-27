@@ -5,6 +5,7 @@ ResourceFactory::ResourceFactory(CarsTypes::Types resource, City& city) : _city(
 {
 	std::thread func_thread(&ResourceFactory::resource_factory_working, this);
 	func_thread.detach();
+	World::getCreatedWorld()->addThread(std::move(func_thread));//
 	std::cout << "new factory" << std::endl;
 }
 
@@ -19,6 +20,7 @@ void ResourceFactory::resource_factory_working()
 			break;
 		sleep(rand() % 3 + 1);
 	}
+	std::cout << "RF" << std::endl;
 }
 
 CarsTypes::Types ResourceFactory::getResource() const

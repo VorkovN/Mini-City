@@ -12,39 +12,45 @@ int main()
 	CommandExecuter commandExecuter;
 	while (true)
 	{
-			std::string command_word, arg;
-			std::vector<std::string> args_vector;
-			std::cin >> command_word;
+		std::string command_word, arg;
+		std::vector<std::string> args_vector;
+		std::cin >> command_word;
 
-			const auto command = commandExecuter.getCommands().find(command_word);
+		const auto command = commandExecuter.getCommands().find(command_word);
 
-			if (command != commandExecuter.getCommands().end())
+		if (command != commandExecuter.getCommands().end())
+		{
+			while (std::cin.peek() != '\n')
 			{
-				while (std::cin.peek() != '\n')
-				{
-					std::cin >> arg;
-					args_vector.push_back(arg);
-				}
-
-				if (args_vector.empty())
-				{
-					if (!command->second->execute())
-						std::cout << "execute error" << std::endl;
-				}
-
-				else
-				{
-					if (!command->second->execute(args_vector))
-						std::cout << "execute error" << std::endl;
-				}
-
+				std::cin >> arg;
+				args_vector.push_back(arg);
 			}
+
+			if (args_vector.empty())
+			{
+				if (!command->second->execute())
+					std::cout << "execute error" << std::endl;
+			}
+
 			else
 			{
-				std::cout << "command type error" << std::endl;
+				if (!command->second->execute(args_vector))
+					std::cout << "execute error" << std::endl;
 			}
-			usleep(200);//требуется для корректонй инициализации объектов в нескольких потоках
+
 		}
+		else
+		{
+			std::cout << "command type error" << std::endl;
+		}
+
+		if (!World::ALIVE_WORLD)
+			break;
+		//sleep(1);
+		usleep(100000);//требуется для корректонй инициализации объектов в нескольких потоках
+	}
+	sleep(5);
+	delete World::getCreatedWorld();
 	return 0;
 }
 

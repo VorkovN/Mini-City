@@ -10,6 +10,11 @@ Warehouse::Warehouse(City& city) : _city(city)
 	f2.detach();
 	f3.detach();
 
+	World* world = World::getCreatedWorld();//
+	world->addThread(std::move(f1));//
+	world->addThread(std::move(f2));//
+	world->addThread(std::move(f3));//
+
 	std::cout << "new warehouse" << std::endl;
 }
 
@@ -25,13 +30,12 @@ void Warehouse::sellProduct(T resource)
 		_city.getMutex().lock();
 		size_t &resource_count = _city.getResources()[resource];
 		sold_products = _city.getPopulation()/SELLING_K + 1;
+		_city.getMutex().unlock();
 		if (sold_products > resource_count)
 		{
 			std::cerr << "Game over (resource " + std::to_string(resource) + " run out)" ;
 			World::ALIVE_WORLD = false;
-			sleep(8);
-			delete World::getCreatedWorld();
-			exit(0);
+			break;
 		}
 
 		resource_count -= sold_products;
@@ -41,5 +45,6 @@ void Warehouse::sellProduct(T resource)
 			break;
 		sleep(rand() % 6 + 1);
 	}
+	std::cout << "W" << std::endl;
 }
 

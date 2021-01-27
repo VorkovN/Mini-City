@@ -191,15 +191,24 @@ World* World::getCreatedWorld()
 
 World::~World()
 {
+//	for(std::thread &thread : _threads)
+//		thread.std::thread::~thread();
+//	sleep(6);
 	delete _freighTtrainFactory;
 	delete _passengerTtrainFactory;
 	for (auto &[str, city]: _cities)// к сожалению есть только в с++ 20
 		delete city;
+	exit(0);
 }
 
 std::unordered_map<std::string, City*>& World::getCities()
 {
 	return _cities;
+}
+
+void World::addThread(std::thread thread)
+{
+	_threads.push_back(std::move(thread));
 }
 
 
