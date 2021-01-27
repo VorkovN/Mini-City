@@ -13,22 +13,35 @@ World::World()
 bool World::buildCity(const std::string& city_name, CarsTypes::Types resources_factory_type)
 {
 	if (!_cities.contains(city_name))
+	{
 		_cities.insert({ city_name, new City(city_name, resources_factory_type) });
+	}
 	else
+	{
+		std::cerr << "city " << city_name <<" already exist" << std::endl;
 		return false;
+	}
 
 	return true;
 }
 
 bool World::buyTrain(const std::string& city_name, CarsTypes::Types cars_type, size_t cars_count)
 {
-	if (_cities.find(city_name) == _cities.end())
+	if (!_cities.contains(city_name))
+	{
+		std::cerr << "city " << city_name <<" doesn't exist" << std::endl;
 		return false;
+	}
 
 	City* city = _cities.at(city_name);
 
-	if(city->getBudget() < Train::car_price[cars_type] * cars_count)
+	const size_t required_budget = Train::car_price[cars_type] * cars_count;
+	if(city->getBudget() < required_budget)
+	{
+		std::cerr << "Not enough money, city budget: " << city->getBudget() <<", required budget: " << required_budget << std::endl;
 		return false;
+	}
+
 
 	city->setBudget(city->getBudget() - Train::car_price[cars_type] * cars_count);
 
@@ -44,13 +57,29 @@ bool World::buyTrain(const std::string& city_name, CarsTypes::Types cars_type, s
 
 bool World::sendTrain(const std::string& name_city_from, const std::string& name_city_to, CarsTypes::Types cars_type, size_t cars_count)
 {
-	if (_cities.find(name_city_from) == _cities.end() || _cities.find(name_city_to) == _cities.end())
+	if (!_cities.contains(name_city_from))
+	{
+		std::cerr << "city " << name_city_from <<" doesn't exist" << std::endl;
 		return false;
+	}
+
+	if (!_cities.contains(name_city_to))
+	{
+		std::cerr << "city " << name_city_to <<" doesn't exist" << std::endl;
+		return false;
+	}
+
+
+
 	City* city_from = _cities.at(name_city_from);
 	City* city_to = _cities.at(name_city_to);
 
 	if (city_from->getRailwayStation()[cars_type].empty())
+	{
+		std::cerr << "railway station hasn't any trains of this type" << std::endl;
 		return false;
+	}
+
 
 	Train* train = city_from->getRailwayStation()[cars_type].front();
 
@@ -62,23 +91,41 @@ bool World::sendTrain(const std::string& name_city_from, const std::string& name
 	return true;
 }
 
-World* World::getCreatedWorld()
+bool World::sellTrain(const std::string& city_name, CarsTypes::Types cars_type, size_t cars_count)
 {
-	if (_world == nullptr)
-		_world = new World;
-	return _world;
-}
+	if (!_cities.contains(city_name))
+	{
+		std::cerr << "city " << city_name <<" doesn't exist" << std::endl;
+		return false;
+	}
 
+	City* city = _cities.at(city_name);
 
-std::unordered_map<std::string, City*>& World::getCities()
-{
-	return _cities;
+	if (city->getRailwayStation()[cars_type].empty())
+	{
+		std::cerr << "railway station hasn't any trains of this type" << std::endl;
+		return false;
+	}
+
+	for (Train* cur_train: city->getRailwayStation()[cars_type])
+		if (cur_train->getCarsCount() == cars_count && cur_train->getCarsType() == cars_type){
+			city->getRailwayStation()[cars_type].remove(cur_train);
+			city->setBudget(city->getBudget() + (Train::car_price[cars_type] * cars_count) / 2);
+			delete cur_train;
+			std::cout << "train sold" << std::endl;
+			return true;
+		}
+	std::cerr << "such train doesn't exist" << std::endl;
+	return false;
 }
 
 bool World::showProducts(const std::string& city_name)
 {
-	if (_cities.find(city_name) == _cities.end())
+	if (!_cities.contains(city_name))
+	{
+		std::cerr << "city " << city_name <<" doesn't exist" << std::endl;
 		return false;
+	}
 
 	City* city = _cities.at(city_name);
 
@@ -91,8 +138,11 @@ bool World::showProducts(const std::string& city_name)
 
 bool World::showTrains(const std::string& city_name)
 {
-	if (_cities.find(city_name) == _cities.end())
+	if (!_cities.contains(city_name))
+	{
+		std::cerr << "city " << city_name <<" doesn't exist" << std::endl;
 		return false;
+	}
 
 	City* city = _cities.at(city_name);
 
@@ -132,27 +182,11 @@ bool World::showBudget()
 	return true;
 }
 
-bool World::sellTrain(const std::string& city_name, CarsTypes::Types cars_type, size_t cars_count)
+World* World::getCreatedWorld()
 {
-	if (_cities.find(city_name) == _cities.end())
-		return false;
-	City* city = _cities.at(city_name);
-
-	if (city->getRailwayStation()[cars_type].empty())
-		return false;
-
-	for (Train* cur_train: city->getRailwayStation()[cars_type])
-		if (cur_train->getCarsCount() == cars_count && cur_train->getCarsType() == cars_type){
-			city->getRailwayStation()[cars_type].remove(cur_train);
-			city->setBudget(city->getBudget() + (Train::car_price[cars_type] * cars_count) / 2);
-			delete cur_train;
-			std::cout << "train sold" << std::endl;
-			return true;
-		}
-
-
-
-	return false;
+	if (_world == nullptr)
+		_world = new World;
+	return _world;
 }
 
 World::~World()
@@ -161,6 +195,11 @@ World::~World()
 	delete _passengerTtrainFactory;
 	for (auto &[str, city]: _cities)// к сожалению есть только в с++ 20
 		delete city;
+}
+
+std::unordered_map<std::string, City*>& World::getCities()
+{
+	return _cities;
 }
 
 

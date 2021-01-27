@@ -6,7 +6,6 @@ set(CMAKE_CXX_FLAGS -pthread)
 
 set(COMMANDER Commander/src/CommandExecuter.cpp
         Commander/src/Command.cpp
-        Commander/src/BuildFactory.cpp
         Commander/src/BuildCity.cpp
         Commander/src/BuyTrain.cpp
         Commander/src/SellTrain.cpp
