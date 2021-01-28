@@ -7,7 +7,6 @@ bool  World::ALIVE_WORLD = true;
 
 World::World()
 {
-	std::cout << "World created" << std::endl;
 }
 
 bool World::buildCity(const std::string& city_name, CarsTypes::Types resources_factory_type)
@@ -69,8 +68,6 @@ bool World::sendTrain(const std::string& name_city_from, const std::string& name
 		return false;
 	}
 
-
-
 	City* city_from = _cities.at(name_city_from);
 	City* city_to = _cities.at(name_city_to);
 
@@ -80,11 +77,10 @@ bool World::sendTrain(const std::string& name_city_from, const std::string& name
 		return false;
 	}
 
-
 	Train* train = city_from->getRailwayStation()[cars_type].front();
 
 	for (Train* cur_train: city_from->getRailwayStation()[cars_type])
-		if (cars_count <= cur_train->getCarsCount() && cur_train->getCarsCount() < train->getCarsCount())
+		if (cars_count <= cur_train->getCarsCount() && cur_train < train)
 			train = cur_train;
 
 	train->move(city_from, city_to, cars_count);
@@ -203,9 +199,6 @@ std::unordered_map<std::string, City*>& World::getCities()
 	return _cities;
 }
 
-void World::addThread(std::thread thread)
-{
-	_threads.push_back(std::move(thread));
-}
+
 
 

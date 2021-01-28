@@ -23,7 +23,6 @@ class World
 	World(World& other) = delete;
 	void operator=(const World&) = delete;
 	std::unordered_map<std::string, City*>& getCities();
-	void addThread(std::thread thread);
 
 	bool buildCity(const std::string& city_name, CarsTypes::Types resources_factory_type);
 	bool buyTrain(const std::string& city_name, CarsTypes::Types cars_type, size_t cars_count);
@@ -45,5 +44,4 @@ class World
 
  private:
 	std::unordered_map<std::string, City*> _cities;//карта городов
-	std::vector<std::thread> _threads;
 };

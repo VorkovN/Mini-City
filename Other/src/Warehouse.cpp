@@ -25,7 +25,7 @@ void Warehouse::sellProduct(T resource)
 		_city.getMutex().unlock();
 		if (sold_products > resource_count)
 		{
-			std::cout << "Game over (resource " + std::to_string(resource) + " run out)" ;
+			std::cout << "GAME OVER (resource " + std::to_string(resource) + " run out)" ;
 			World::ALIVE_WORLD = false;
 			break;
 		}

@@ -14,6 +14,12 @@ class Train
 	virtual void move(City* city1, City* city2, size_t cars_count) = 0;
 	size_t& getCarsCount();
 	CarsTypes::Types getCarsType();
+	bool operator==(const Train& train2) const;
+	bool operator!=(const Train& train2) const;
+	bool operator<(const Train& train2) const;
+	bool operator>(const Train& train2) const;
+	bool operator<=(const Train& train2) const;
+	bool operator>=(const Train& train2) const;
 
  public:
 	static std::map<CarsTypes::Types, size_t> car_price ;

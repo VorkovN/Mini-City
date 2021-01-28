@@ -15,3 +15,28 @@ CarsTypes::Types Train::getCarsType()
 	return _cars_type;
 }
 
+bool Train::operator==(const Train& train2) const {
+	return (this->_cars_count == train2._cars_count);
+}
+
+bool Train::operator!=(const Train& train2) const {
+	return (this->_cars_count != train2._cars_count);
+}
+
+bool Train::operator<(const Train& train2) const {
+	return (this->_cars_count < train2._cars_count);
+}
+
+bool Train::operator>(const Train& train2) const {
+	return (this->_cars_count > train2._cars_count);
+}
+
+bool Train::operator<=(const Train& train2) const {
+	return (this->_cars_count <= train2._cars_count);
+}
+
+bool Train::operator>=(const Train& train2) const {
+	return (this->_cars_count >= train2._cars_count);
+}
+
+

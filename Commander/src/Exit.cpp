@@ -2,6 +2,6 @@
 
 bool Exit::execute()  const
 {
-	std::cerr << "Game over (exit command)" << std::endl;
+	std::cerr << "GAME OVER (exit command)" << std::endl;
 	World::ALIVE_WORLD = false;
 }
