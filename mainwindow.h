@@ -25,6 +25,7 @@ public:
 private slots:
     void on_executeButton_clicked();
 	void slotTimerAlarm();
+	void destroyWorld();
 
 private:
     Ui::MainWindow *ui;

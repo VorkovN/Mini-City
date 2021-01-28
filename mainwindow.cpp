@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include "./ui_mainwindow.h"
+#include "ui_mainwindow.h"
 #include "World.h"
 #include <iostream>
 
@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+
     delete ui;
 }
 
@@ -32,12 +33,6 @@ void MainWindow::on_executeButton_clicked()
 
 void MainWindow::slotTimerAlarm()
 {
-	if (!World::ALIVE_WORLD)
-	{
-		_timer->stop();
-		sleep(8);
-		delete World::getCreatedWorld();
-	}
 
 	std::string command_word = "", arg = "";
 	std::vector<std::string> args_vector;
@@ -78,7 +73,17 @@ void MainWindow::slotTimerAlarm()
 			std::cout << "command type error" << std::endl;
 		}
 	}
-	ui->textEdit->setText(QString::fromStdString(oss.str()));
+	if (!World::ALIVE_WORLD)
+	{
+		QTimer::singleShot(7000, this, &MainWindow::destroyWorld);//чтобы успели закрыться все потоки
+	}
+	ui->textEdit->insertPlainText(QString::fromStdString(oss.str()));
+	oss.str("");
 	_command_str = "";
+}
+
+void MainWindow::destroyWorld()
+{
+	delete World::getCreatedWorld();
 }
 

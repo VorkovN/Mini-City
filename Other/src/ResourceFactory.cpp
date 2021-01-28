@@ -20,7 +20,7 @@ void ResourceFactory::resource_factory_working()
 		sleep(rand() % 3 + 1);
 	}
 	_city.getMutex().lock();
-	std::cout << "Resource Factory destroyed" << std::endl;
+	std::cout << "Resource Factory thread destroyed" << std::endl;
 	_city.getMutex().unlock();
 }
 

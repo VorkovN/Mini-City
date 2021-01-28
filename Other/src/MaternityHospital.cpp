@@ -20,6 +20,6 @@ void MatrinityHospital::createChildren()
 		sleep(rand() % 4 + 1);
 	}
 	_city.getMutex().lock();
-	std::cout << "Meternity house destroyed" << std::endl;
+	std::cout << "Meternity house thread destroyed" << std::endl;
 	_city.getMutex().unlock();
 }

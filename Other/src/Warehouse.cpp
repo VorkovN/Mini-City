@@ -38,7 +38,7 @@ void Warehouse::sellProduct(T resource)
 		sleep(rand() % 6 + 1);
 	}
 	_city.getMutex().lock();
-	std::cout << "Warehouse destroyed" << std::endl;
+	std::cout << "Warehouse thread destroyed" << std::endl;
 	_city.getMutex().unlock();
 }
 
